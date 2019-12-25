@@ -297,48 +297,9 @@
                 </li>
 
                 <li class="slide">
-                    <a class="side-menu__item" data-toggle="slide" href="#"><i class="side-menu__icon fa fa-database"></i><span class="side-menu__label">Pages</span><i class="angle fa fa-angle-right"></i></a>
-                    <ul class="slide-menu">
-                        <li>
-                            <a href="profile.html" class="slide-item">Profile</a>
-                        </li>
-                        <li>
-                            <a href="editprofile.html" class="slide-item">Edit Profile</a>
-                        </li>
-                        <li>
-                            <a href="gallery.html" class="slide-item">Gallery</a>
-                        </li>
-                        <li>
-                            <a href="about.html" class="slide-item">About Company</a>
-                        </li>
-                        <li>
-                            <a href="company-history.html" class="slide-item">Company History</a>
-                        </li>
-                        <li>
-                            <a href="services.html" class="slide-item">Services</a>
-                        </li>
-                        <li>
-                            <a href="faq.html" class="slide-item">FAQS</a>
-                        </li>
-                        <li>
-                            <a href="terms.html" class="slide-item">Terms and Conditions</a>
-                        </li>
-                        <li>
-                            <a href="empty.html" class="slide-item">Empty Page</a>
-                        </li>
-                        <li>
-                            <a href="construction.html" class="slide-item">Under Construction</a>
-                        </li>
-                        <li>
-                            <a href="blog.html" class="slide-item">Blog</a>
-                        </li>
-                        <li>
-                            <a href="invoice.html" class="slide-item">Invoice</a>
-                        </li>
-                        <li>
-                            <a href="pricing.html" class="slide-item">Pricing Tables</a>
-                        </li>
-                    </ul>
+
+                    <a class="side-menu__item"  href="backend.add_page.blade.php"><i class="side-menu__icon fa fa-database"></i><span class="side-menu__label">Pages</span></a>
+
                 </li>
 
                 <li class="slide">
