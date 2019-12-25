@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Role;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Validator;
 class RoleController extends Controller
 {
     /**
@@ -12,9 +12,24 @@ class RoleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        /*$page =Role::cursor(2);*/
+
+        /* return DataTable::of($page)->make(true);*/
+        return view('backend.add_role');
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+
+    function getdata(Request $request)
+    {
+        $page =Role::all();
+        return DataTable::of($page)->make(true);
     }
 
     /**
@@ -22,6 +37,59 @@ class RoleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    function postdata(Request $request)
+    {
+        $validation = Validator::make($request->all(), [
+            'title' => 'required',
+
+        ]);
+
+        $error_array = array();
+        $success_output = '';
+        if ($validation->fails())
+        {
+            foreach($validation->messages()->getMessages() as $field_name => $messages)
+            {
+                $error_array[] = $messages;
+            }
+        }
+        else
+        {
+            if($request->get('button_action') == "insert")
+            {
+                $pages = new Role([
+                    'title'    =>  $request->get('title'),
+
+                ]);
+                $pages->save();
+                $success_output = '<div class="alert alert-success">Data Inserted</div>';
+            }
+        }
+        $output = array(
+            'error'     =>  $error_array,
+            'success'   =>  $success_output
+        );
+        echo json_encode($output);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     public function create()
     {
         //
@@ -41,10 +109,10 @@ class RoleController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Role  $role
+     * @param  \App\Pages_mgt  $pages_mgt
      * @return \Illuminate\Http\Response
      */
-    public function show(Role $role)
+    public function show(Pages_mgt $pages_mgt)
     {
         //
     }
@@ -52,10 +120,10 @@ class RoleController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Role  $role
+     * @param  \App\Pages_mgt  $pages_mgt
      * @return \Illuminate\Http\Response
      */
-    public function edit(Role $role)
+    public function edit(Pages_mgt $pages_mgt)
     {
         //
     }
@@ -64,10 +132,10 @@ class RoleController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Role  $role
+     * @param  \App\Pages_mgt  $pages_mgt
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Role $role)
+    public function update(Request $request, Pages_mgt $pages_mgt)
     {
         //
     }
@@ -75,10 +143,10 @@ class RoleController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Role  $role
+     * @param  \App\Pages_mgt  $pages_mgt
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Role $role)
+    public function destroy(Pages_mgt $pages_mgt)
     {
         //
     }
