@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Article;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use Yajra\DataTables\Facades\DataTables;
 
 class ArticleController extends Controller
 {
@@ -14,72 +16,79 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        //
-    }
+        return view('backend.article');
+    }//.... end of index() .....//
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function getArticlesList()
     {
-        //
+        return DataTables::of(Article::query())
+            ->addColumn('action', function ($article) {
+                return '';
+            })->make(true);
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return array
+     * Delete specific article.
      */
+    public function deleteArticle(Request $request)
+    {
+        Article::destroy($request->id);
+        return ['status' => true, 'message' => 'Article deleted successfully'];
+    }
+
+    public function store_article(Request $request)
+    {
+
+        if($request->ajax())
+        {
+            $data = Article::latest()->get();
+            return DataTables::of($data)
+                ->addColumn('action', function($data){
+                    $button = '<button type="button" name="edit" id="'.$data->id.'" class="edit btn btn-primary btn-sm">Edit</button>';
+                    $button .= '&nbsp;&nbsp;&nbsp;<button type="button" name="edit" id="'.$data->id.'" class="delete btn btn-danger btn-sm">Delete</button>';
+                    return $button;
+                })
+                ->rawColumns(['action'])
+                ->make(true);
+        }
+        return view('backend.article');
+    }
+
     public function store(Request $request)
     {
-        //
+
+        $rules = array(
+            'title'    =>  'required',
+            'image'         =>  'required|image|max:2048',
+            'description'     =>  'required'
+        );
+
+        $error = Validator::make($request->all(), $rules);
+
+        if($error->fails())
+        {
+            return response()->json(['errors' => $error->errors()->all()]);
+        }
+
+        $image = $request->file('image');
+
+        $new_name = rand() . '.' . $image->getClientOriginalExtension();
+
+        $image->move(public_path('images'), $new_name);
+
+        $form_data = array(
+            'title'        =>  $request->title,
+            'image'             =>  $new_name,
+            'description'         =>  $request->description,
+            'user_id'=> auth()->user()->id
+        );
+
+        Article::create($form_data);
+
+        return response()->json(['success' => 'Data Added successfully.']);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Article  $article
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Article $article)
-    {
-        //
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Article  $article
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Article $article)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Article  $article
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Article $article)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Article  $article
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Article $article)
-    {
-        //
-    }
 }

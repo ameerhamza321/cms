@@ -2,7 +2,7 @@
 <html lang="en" dir="ltr">
 
 <!--Start Header-->
-@include('_partial._header')
+@include('backend._partial._header')
 <!--End Header-->
 
 <body class="app sidebar-mini">
@@ -383,7 +383,7 @@
             <div class="side-app">
 
                 <!-- breadcrumb start-->
-            @include('_partial.breadcrumb')
+            @include('backend._partial.breadcrumb')
             <!-- breadcrumb start-->
 
                 <!-- main content start-->
