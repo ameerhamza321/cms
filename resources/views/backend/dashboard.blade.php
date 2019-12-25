@@ -1,4 +1,4 @@
-@extends('_partial._master')
+@extends('backend._partial._master')
 
 @section('main_content')
 
