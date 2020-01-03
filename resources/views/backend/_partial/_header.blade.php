@@ -15,19 +15,10 @@
     <link rel="shortcut icon" type="image/x-icon" href="../assets/favicon.ico" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-{{--    <script>--}}
-{{--        $.ajaxSetup({--}}
-{{--            headers: {--}}
-{{--                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')--}}
-{{--            }--}}
-{{--        });--}}
-{{--    </script>--}}
 
-    <!-- Custom -->
-    <link href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css" rel="stylesheet">
-    <script src="{{ asset('assets') }}/jquery/jquery.min.js"></script>
-    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
-    <script src = "http://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js" defer ></script>
+    <!-- Data table css -->
+    <link href="../assets/plugins/datatable/dataTables.bootstrap4.min.css" rel="stylesheet" />
+    <link href="../assets/plugins/datatable/jquery.dataTables.min.css" rel="stylesheet" />
 
 
     <!-- Title -->
@@ -37,6 +28,8 @@
     <!-- Sidemenu Css -->
     <link href="../assets/plugins/toggle-sidebar/sidemenu.css" rel="stylesheet" />
 
+    <!-- Slect2 css -->
+    <link href="../assets/plugins/select2/select2.min.css" rel="stylesheet" />
 
     <!-- Bootstrap Css -->
     <link href="../assets/plugins/bootstrap-4.3.1-dist/css/bootstrap.min.css" rel="stylesheet" />
@@ -57,5 +50,19 @@
     <!---Font icons-->
     <link href="../assets/plugins/iconfonts/plugin.css" rel="stylesheet" />
     <link href="../assets/plugins/iconfonts/icons.css" rel="stylesheet" />
+
+    <!-- sumernot Editor css -->
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
+    <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.css" rel="stylesheet">
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.js"></script>
+
+    <script>
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+    </script>
 
 </head>

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 use App\Pages_mgt;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Yajra\DataTables\DataTables;
+
 class PagesMgtController extends Controller
 {
 
@@ -24,7 +26,7 @@ class PagesMgtController extends Controller
     function getdata(Pages_mgt $pages_mgt)
     {
         $page =Pages_mgt::all();
-        return DataTable::of($page)->make(true);
+        return DataTables::of($page)->make(true);
     }
 
     /**
@@ -77,22 +79,6 @@ class PagesMgtController extends Controller
         );
         echo json_encode($output);
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     public function create()

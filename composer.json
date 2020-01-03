@@ -12,6 +12,7 @@
         "fideloper/proxy": "^4.0",
         "laravel/framework": "^6.2",
         "laravel/tinker": "^2.0",
+        "unisharp/laravel-filemanager": "^1.9",
         "yajra/laravel-datatables-oracle": "^9.8"
     },
     "require-dev": {
@@ -60,4 +61,5 @@
             "@php artisan key:generate --ansi"
         ]
     }
+
 }

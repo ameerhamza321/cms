@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Role;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Yajra\DataTables\DataTables;
+
 class RoleController extends Controller
 {
     /**
@@ -29,7 +31,7 @@ class RoleController extends Controller
     function getdata(Request $request)
     {
         $page =Role::all();
-        return DataTable::of($page)->make(true);
+        return DataTables::of($page)->make(true);
     }
 
     /**

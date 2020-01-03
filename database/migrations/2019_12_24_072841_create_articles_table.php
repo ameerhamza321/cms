@@ -17,11 +17,15 @@ class CreateArticlesTable extends Migration
             $table->bigIncrements('id');
             $table->string('title', 255);
             $table->string('image');
-            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('user_id')->unsigned();
             $table->longtext('description');
             $table->tinyInteger('status');
             $table->softDeletes();
             $table->timestamps();
+
+            $table->foreign('user_id')
+                ->references('id')->on('users')
+                ->onDelete('cascade');
         });
     }
 

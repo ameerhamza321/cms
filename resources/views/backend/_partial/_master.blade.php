@@ -8,7 +8,7 @@
 <body class="app sidebar-mini">
 <!--Loader-->
 <div id="global-loader">
-    <img src="assets/images/products/products/loader.png" class="loader-img floating" alt="">
+    <img src="../assets/images/products/products/loader.png" class="loader-img floating" alt="">
 </div>
 <div class="page">
     <div class="page-main">
@@ -39,6 +39,7 @@
                                 <i class="fe fe-maximize-2"  id="fullscreen-button"></i>
                             </a>
                         </div>
+                        <!----- select flag ------->
                         <div class="dropdown d-none d-md-flex country-selector">
                             <a href="#" class="d-flex nav-link leading-none" data-toggle="dropdown">
                                 <img src="../assets/images/us_flag.jpg" alt="img" class="avatar avatar-xs mr-1 align-self-center">
@@ -79,6 +80,9 @@
                                 </a>
                             </div>
                         </div>
+                        <!----- select flag end ------->
+
+                        <!----- Notification ------->
                         <div class="dropdown d-none d-md-flex">
                             <a class="nav-link icon" data-toggle="dropdown">
                                 <i class="fa fa-bell-o"></i>
@@ -213,6 +217,8 @@
                                 <a href="#" class="dropdown-item text-center">View all</a>
                             </div>
                         </div>
+                        <!----- Notification End ------->
+
                         <div class="dropdown ">
                             <a href="#" class="nav-link pr-0 leading-none user-img" data-toggle="dropdown">
                                 <img src="../assets/images/faces/male/25.jpg" alt="profile-img" class="avatar avatar-md brround">
@@ -228,6 +234,7 @@
                                     <i class="dropdown-icon  icon icon-settings"></i> Account Settings
                                 </a>
                                 <a class="dropdown-item" href="login.html">
+
                                     <i class="dropdown-icon icon icon-power"></i> Log out
                                 </a>
                             </div>
@@ -282,17 +289,15 @@
                 </li>
 
                 <li class="slide">
-                    <a class="side-menu__item" data-toggle="slide" href="#"><i class="side-menu__icon fa fa-th-large"></i><span class="side-menu__label">Create User</span><i class="angle fa fa-angle-right"></i></a>
+                    <a class="side-menu__item" data-toggle="slide" href="#"><i class="side-menu__icon fa fa-th-large"></i><span class="side-menu__label">Articles</span><i class="angle fa fa-angle-right"></i></a>
                     <ul class="slide-menu">
                         <li>
-                            <a href="form-elements.html" class="slide-item">Form Elements</a>
+                            <a href="{{route('article')}}" class="slide-item">List Article</a>
                         </li>
                         <li>
-                            <a href="form-wizard.html" class="slide-item">Form-wizard Elements</a>
+                            <a href="{{route("article.add_article")}}" class="slide-item">Add Article</a>
                         </li>
-                        <li>
-                            <a href="wysiwyag.html" class="slide-item">Text Editor</a>
-                        </li>
+
                     </ul>
                 </li>
 
@@ -301,6 +306,8 @@
                     <a class="side-menu__item"  href="backend.add_page.blade.php"><i class="side-menu__icon fa fa-database"></i><span class="side-menu__label">Pages</span></a>
 
                 </li>
+
+
 
                 <li class="slide">
                     <a class="side-menu__item" data-toggle="slide" href="#"><i class="side-menu__icon fa fa-chain-broken"></i><span class="side-menu__label">Custom  Pages</span><i class="angle fa fa-angle-right"></i></a>
@@ -316,6 +323,18 @@
                         </li>
                         <li>
                             <a href="lockscreen.html" class="slide-item">Lock screen</a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="slide">
+                    <a class="side-menu__item" data-toggle="slide" href="#"><i class="side-menu__icon fa fa-image"></i><span class="side-menu__label">Slider</span><i class="angle fa fa-angle-right"></i></a>
+                    <ul class="slide-menu">
+                        <li>
+                            <a href="{{route("slider.index")}}" class="slide-item">List Slider</a>
+                        </li>
+                        <li>
+                            <a href="{{route("slider.create")}}" class="slide-item">Create Slider</a>
                         </li>
                     </ul>
                 </li>
@@ -400,6 +419,11 @@
 <script src="../assets/plugins/counters/counterup.min.js"></script>
 <script src="../assets/plugins/counters/waypoints.min.js"></script>
 
+<!-- Data tables -->
+<script src="../assets/plugins/datatable/jquery.dataTables.min.js"></script>
+<script src="../assets/plugins/datatable/dataTables.bootstrap4.min.js"></script>
+<script src="../assets/js/datatable.js"></script>
+
 <!-- Custom scroll bar Js-->
 <script src="../assets/plugins/scroll-bar/jquery.mCustomScrollbar.concat.min.js"></script>
 
@@ -412,6 +436,7 @@
 
 <!-- Custom Js-->
 <script src="../assets/js/admin-custom.js"></script>
+
 
 
 </body>
