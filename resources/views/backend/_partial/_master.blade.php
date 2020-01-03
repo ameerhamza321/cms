@@ -282,25 +282,41 @@
                 </li>
 
                 <li class="slide">
-                    <a class="side-menu__item" data-toggle="slide" href="#"><i class="side-menu__icon fa fa-th-large"></i><span class="side-menu__label">Create User</span><i class="angle fa fa-angle-right"></i></a>
+                    <a class="side-menu__item" data-toggle="slide" href="#"><i class="side-menu__icon fa fa-th-large"></i><span class="side-menu__label">User Management</span><i class="angle fa fa-angle-right"></i></a>
                     <ul class="slide-menu">
                         <li>
-                            <a href="form-elements.html" class="slide-item">Form Elements</a>
+                            <a href="{{route('Users.index')}}" class="slide-item">Add New User</a>
                         </li>
                         <li>
-                            <a href="form-wizard.html" class="slide-item">Form-wizard Elements</a>
+                            <a href="form-wizard.html" class="slide-item">User List</a>
                         </li>
-                        <li>
-                            <a href="wysiwyag.html" class="slide-item">Text Editor</a>
-                        </li>
+
                     </ul>
                 </li>
 
+ <li class="slide">
+                    <a class="side-menu__item" data-toggle="slide" href="#"><i class="side-menu__icon fa fa-database"></i><span class="side-menu__label">Pages</span><i class="angle fa fa-angle-right"></i></a>
+                    <ul class="slide-menu">
+                        <li>
+                            <a href="{{route('PagesMgt.index')}}" class="slide-item">Add New Page</a>
+                        </li>
+                        <li>
+                            <a href="{{route('Pages_list.index')}}" class="slide-item">Pages List</a>
+                        </li
+                    </ul>
+                </li>
+</ul>
+
                 <li class="slide">
 
-                    <a class="side-menu__item"  href="backend.add_page.blade.php"><i class="side-menu__icon fa fa-database"></i><span class="side-menu__label">Pages</span></a>
+                  <a class="side-menu__item"  href="{{route('Role.index')}}"><i class="side-menu__icon fa fa-user"></i><span class="side-menu__label">Roll</span></a>
 
-                </li>
+                      </li>
+                         <li class="slide">
+
+                           <a class="side-menu__item"  href="#"><i class="side-menu__icon fa fa-sliders"></i><span class="side-menu__label">Slider</span></a>
+
+                              </li>
 
                 <li class="slide">
                     <a class="side-menu__item" data-toggle="slide" href="#"><i class="side-menu__icon fa fa-chain-broken"></i><span class="side-menu__label">Custom  Pages</span><i class="angle fa fa-angle-right"></i></a>
@@ -412,6 +428,13 @@
 
 <!-- Custom Js-->
 <script src="../assets/js/admin-custom.js"></script>
+
+
+<!-- Data tables -->
+<script src="../assets/plugins/datatable/jquery.dataTables.min.js"></script>
+<script src="../assets/plugins/datatable/dataTables.bootstrap4.min.js"></script>
+<script src="../assets/js/datatable.js"></script>
+
 
 
 </body>

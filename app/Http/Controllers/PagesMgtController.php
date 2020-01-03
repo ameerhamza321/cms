@@ -4,12 +4,20 @@ namespace App\Http\Controllers;
 use App\Pages_mgt;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
+use Yajra\DataTables\Facades\DataTables;
+
 class PagesMgtController extends Controller
 {
 
+    public function __construct(){
+        $this->middleware('auth');
+    }
+
+
     public function index(Request $request)
     {
-        $page =Pages_mgt::cursor(2);
+
 
        /* return DataTable::of($page)->make(true);*/
        return view('backend.add_page');
@@ -23,8 +31,10 @@ class PagesMgtController extends Controller
 
     function getdata(Pages_mgt $pages_mgt)
     {
-        $page =Pages_mgt::all();
-        return DataTable::of($page)->make(true);
+        $page =Pages_mgt::cursor();
+        return DataTables::of($page)->addColumn('shortDescription', function($page) {
+            return strip_tags(Str::words($page->description, 20));
+        })->make(true);
     }
 
     /**
@@ -76,6 +86,24 @@ class PagesMgtController extends Controller
             'success'   =>  $success_output
         );
         echo json_encode($output);
+
+
+        if(empty($_FILES['file']))
+        {
+            exit();
+        }
+        $errorImgFile = "./img/img_upload_error.jpg";
+        $temp = explode(".", $_FILES["file"]["name"]);
+        $newfilename = round(microtime(true)) . '.' . end($temp);
+        $destinationFilePath = './img-uploads/'.$newfilename ;
+        if(!move_uploaded_file($_FILES['file']['tmp_name'], $destinationFilePath)){
+            echo $errorImgFile;
+        }
+        else{
+            echo $destinationFilePath;
+        }
+
+
     }
 
 

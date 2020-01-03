@@ -1,4 +1,4 @@
-@extends('_partial._master')
+@extends('backend._partial._master')
 
 @section('main_content')
 
@@ -6,19 +6,19 @@
 
 <div class="container">
     <div align="right">
-  <button type="button" class="btn btn-primary waves-effect waves-light btn-md" data-toggle="modal" data-target="#myModal">Add New Page</button>
+  <button type="button" class="btn btn-primary waves-effect waves-light btn-md" data-toggle="modal" data-target="#myModal">Add New Role</button>
     </div>
     <br />
     <table id="pages_table" class="table table-bordered" style="width:100%">
-        <thead>
+        <thead class="bg-primary text-white">
             <tr>
-                <th>Title</th>
+                <th class="text-white">Title</th>
 
             </tr>
         </thead>
     </table>
 </div>
-<body>
+
 
   <!-- Modal -->
   <div class="modal fade" id="myModal" role="dialog">
@@ -29,9 +29,9 @@
       <form method="post" action="{{route('Role.postdata')}}" id="pages_form">
        @method('POST')
                 @csrf
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Modal Header</h4>
+        <div class="modal-header bg-primary text-white">
+        <h4 class="modal-title" align-text="center">Add New Roll</h4>
+          <button type="button" class="close" class="waves-effect waves-light btn-md" data-dismiss="modal">&times;</button>
         </div>
         <div class="modal-body">
 
@@ -42,7 +42,7 @@
           			<label class="form-label" >Role Title</label>
           		</div>
           		<div class="col-md-9">
-          			<input type="text" name="title" id="title" class="form-control"  placeholder="Enter Role Title">
+          			<input type="text" name="name" id="name" class="form-control"  placeholder="Enter Role Title">
           		</div>
           	</div>
           </div>
@@ -64,7 +64,7 @@
 
 </div>
 
-</body>
+
 
 
 
@@ -75,7 +75,7 @@ $(document).ready(function() {
         "serverSide": true,
         "ajax": "{{ route('Role.getdata') }}",
         "columns":[
-            { "data": "title" }
+            { "data": "name" }
         ]
      });
 
