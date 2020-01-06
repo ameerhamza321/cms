@@ -79,59 +79,19 @@ class RoleController extends Controller
         echo json_encode($output);
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Pages_mgt  $pages_mgt
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Pages_mgt $pages_mgt)
-    {
-        //
-    }
-
     /**
      * Show the form for editing the specified resource.
      *
      * @param  \App\Pages_mgt  $pages_mgt
      * @return \Illuminate\Http\Response
      */
-    public function edit(Pages_mgt $pages_mgt)
+    public function edit($id)
     {
-        //
+        if(request()->ajax())
+        {
+            $data = Role::findOrFail($id);
+            return response()->json(['result' => $data]);
+        }
     }
 
     /**
@@ -143,8 +103,32 @@ class RoleController extends Controller
      */
     public function update(Request $request, Pages_mgt $pages_mgt)
     {
-        //
+        $rules = array(
+            'name' => 'required',
+
+        );
+
+        $error = Validator::make($request->all(), $rules);
+
+        if ($error->fails()) {
+            return response()->json(['errors' => $error->errors()->all()]);
+        }
+
+
+
+        $form_data = array(
+            'name' => $request->name,
+
+        );
+
+
+        Article::create($form_data);
+
+
+        return response()->json(['success' => 'Data Added successfully.']);
+
     }
+
 
     /**
      * Remove the specified resource from storage.

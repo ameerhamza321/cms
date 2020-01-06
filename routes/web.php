@@ -42,6 +42,8 @@ Route::post('PagesMgt/postdata', 'PagesMgtController@postdata')->name('PagesMgt.
 Route::get('Role', 'RoleController@index')->name('Role.index');
 Route::get('Role/getdata', 'RoleController@getdata')->name('Role.getdata');
 Route::post('Role/postdata', 'RoleController@postdata')->name('Role.postdata');
+Route::get('Role/edit', 'RoleController@edit')->name('Role.edit');
+Route::post('Role/update', 'RoleController@update')->name('Role.update');
 
 
 //user routes

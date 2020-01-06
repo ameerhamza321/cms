@@ -76,6 +76,7 @@ $(document).ready(function() {
         "ajax": "{{ route('Role.getdata') }}",
         "columns":[
             { "data": "name" }
+
         ]
      });
 
@@ -117,6 +118,64 @@ $(document).ready(function() {
             }
         })
     });
+
+    if($('#action').val() == "Edit")
+                    {
+                        $.ajax({
+                            url:"{{ route('Role.update') }}",
+                            method:"POST",
+                            data:new FormData(this),
+                            contentType: false,
+                            cache: false,
+                            processData: false,
+                            dataType:"json",
+                            success:function(data)
+                            {
+                                var html = '';
+                                if(data.errors)
+                                {
+                                    html = '<div class="alert alert-danger">';
+                                    for(var count = 0; count < data.errors.length; count++)
+                                    {
+                                        html += '<p>' + data.errors[count] + '</p>';
+                                    }
+                                    html += '</div>';
+                                }
+                                if(data.success)
+                                {
+                                    html = '<div class="alert alert-success">' + data.success + '</div>';
+                                    $('#sample_form')[0].reset();
+                                    $('#store_image').html('');
+                                    $('#user_table').DataTable().ajax.reload();
+                                }
+                                $('#form_result').html(html);
+                            }
+                        });
+                        setTimeout(function(){
+                            $('#formModal').modal('hide');
+                            $('#articleDataTables').DataTable().ajax.reload();
+                        }, 2000);
+                    }
+
+
+                    $(document).on('click', '.editRecord', function(){
+                        var id = $(this).attr('id');
+                        $('#form_result').html('');
+                        $.ajax({
+                            url:"/article/"+id+"/edit",
+                            dataType:"json",
+                            success:function(html){
+                                $('#title').val(html.data.title);
+                                $('#description').val(html.data.description);
+                                $('#hidden_id').val(html.data.id);
+                                $('.modal-title').text("Edit New Record");
+                                $('#action_button').val("Edit");
+                                $('#action').val("Edit");
+                                $('#formModal').modal('show');
+
+                            }
+                        })
+                    });
 
 
 </script>
