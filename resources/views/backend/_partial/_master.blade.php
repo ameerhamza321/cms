@@ -8,7 +8,7 @@
 <body class="app sidebar-mini">
 <!--Loader-->
 <div id="global-loader">
-    <img src="assets/images/products/products/loader.png" class="loader-img floating" alt="">
+    <img src="../assets/images/products/products/loader.png" class="loader-img floating" alt="">
 </div>
 <div class="page">
     <div class="page-main">
@@ -28,57 +28,68 @@
                         <a href="#" class=" "></a>
                         <form class="form-inline mr-auto">
                             <div class="nav-search">
-                                <input type="search" class="form-control header-search" placeholder="Search…" aria-label="Search" >
+                                <input type="search" class="form-control header-search" placeholder="Search…"
+                                       aria-label="Search">
                                 <button class="btn btn-primary" type="submit"><i class="fa fa-search"></i></button>
                             </div>
                         </form>
                     </div>
                     <div class="d-flex order-lg-2 ml-auto">
-                        <div class="dropdown d-none d-md-flex" >
-                            <a  class="nav-link icon full-screen-link">
-                                <i class="fe fe-maximize-2"  id="fullscreen-button"></i>
+                        <div class="dropdown d-none d-md-flex">
+                            <a class="nav-link icon full-screen-link">
+                                <i class="fe fe-maximize-2" id="fullscreen-button"></i>
                             </a>
                         </div>
+                        <!----- select flag ------->
                         <div class="dropdown d-none d-md-flex country-selector">
                             <a href="#" class="d-flex nav-link leading-none" data-toggle="dropdown">
-                                <img src="../assets/images/us_flag.jpg" alt="img" class="avatar avatar-xs mr-1 align-self-center">
+                                <img src="../assets/images/us_flag.jpg" alt="img"
+                                     class="avatar avatar-xs mr-1 align-self-center">
                                 <div>
                                     <strong class="text-dark">English</strong>
                                 </div>
                             </a>
                             <div class="language-width dropdown-menu dropdown-menu-right dropdown-menu-arrow">
                                 <a href="#" class="dropdown-item d-flex pb-3">
-                                    <img src="../assets/images/french_flag.jpg"  alt="flag-img" class="avatar  mr-3 align-self-center" >
+                                    <img src="../assets/images/french_flag.jpg" alt="flag-img"
+                                         class="avatar  mr-3 align-self-center">
                                     <div>
                                         <strong>French</strong>
                                     </div>
                                 </a>
                                 <a href="#" class="dropdown-item d-flex pb-3">
-                                    <img src="../assets/images/germany_flag.jpg"  alt="flag-img" class="avatar  mr-3 align-self-center" >
+                                    <img src="../assets/images/germany_flag.jpg" alt="flag-img"
+                                         class="avatar  mr-3 align-self-center">
                                     <div>
                                         <strong>Germany</strong>
                                     </div>
                                 </a>
                                 <a href="#" class="dropdown-item d-flex pb-3">
-                                    <img src="../assets/images/italy_flag.jpg"  alt="flag-img" class="avatar  mr-3 align-self-center" >
+                                    <img src="../assets/images/italy_flag.jpg" alt="flag-img"
+                                         class="avatar  mr-3 align-self-center">
                                     <div>
                                         <strong>Italy</strong>
                                     </div>
                                 </a>
                                 <a href="#" class="dropdown-item d-flex pb-3">
-                                    <img src="../assets/images/russia_flag.jpg"  alt="flag-img" class="avatar  mr-3 align-self-center" >
+                                    <img src="../assets/images/russia_flag.jpg" alt="flag-img"
+                                         class="avatar  mr-3 align-self-center">
                                     <div>
                                         <strong>Russia</strong>
                                     </div>
                                 </a>
                                 <a href="#" class="dropdown-item d-flex pb-3">
-                                    <img src="../assets/images/spain_flag.jpg"  alt="flag-img" class="avatar  mr-3 align-self-center" >
+                                    <img src="../assets/images/spain_flag.jpg" alt="flag-img"
+                                         class="avatar  mr-3 align-self-center">
                                     <div>
                                         <strong>Spain</strong>
                                     </div>
                                 </a>
                             </div>
                         </div>
+                        <!----- select flag end ------->
+
+                        <!----- Notification ------->
                         <div class="dropdown d-none d-md-flex">
                             <a class="nav-link icon" data-toggle="dropdown">
                                 <i class="fa fa-bell-o"></i>
@@ -134,28 +145,32 @@
                             </a>
                             <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
                                 <a href="#" class="dropdown-item d-flex pb-3">
-                                    <img src="../assets/images/faces/male/41.jpg" alt="avatar-img" class="avatar brround mr-3 align-self-center">
+                                    <img src="../assets/images/faces/male/41.jpg" alt="avatar-img"
+                                         class="avatar brround mr-3 align-self-center">
                                     <div>
                                         <strong>Blake</strong> I've finished it! See you so.......
                                         <div class="small text-muted">30 mins ago</div>
                                     </div>
                                 </a>
                                 <a href="#" class="dropdown-item d-flex pb-3">
-                                    <img src="../assets/images/faces/female/1.jpg" alt="avatar-img" class="avatar brround mr-3 align-self-center">
+                                    <img src="../assets/images/faces/female/1.jpg" alt="avatar-img"
+                                         class="avatar brround mr-3 align-self-center">
                                     <div>
                                         <strong>Caroline</strong> Just see the my Admin....
                                         <div class="small text-muted">12 mins ago</div>
                                     </div>
                                 </a>
                                 <a href="#" class="dropdown-item d-flex pb-3">
-                                    <img src="../assets/images/faces/male/18.jpg" alt="avatar-img" class="avatar brround mr-3 align-self-center">
+                                    <img src="../assets/images/faces/male/18.jpg" alt="avatar-img"
+                                         class="avatar brround mr-3 align-self-center">
                                     <div>
                                         <strong>Jonathan</strong> Hi! I'am singer......
                                         <div class="small text-muted">1 hour ago</div>
                                     </div>
                                 </a>
                                 <a href="#" class="dropdown-item d-flex pb-3">
-                                    <img src="../assets/images/faces/female/18.jpg" alt="avatar-img" class="avatar brround mr-3 align-self-center">
+                                    <img src="../assets/images/faces/female/18.jpg" alt="avatar-img"
+                                         class="avatar brround mr-3 align-self-center">
                                     <div>
                                         <strong>Emily</strong> Just a reminder that you have.....
                                         <div class="small text-muted">45 mins ago</div>
@@ -213,9 +228,12 @@
                                 <a href="#" class="dropdown-item text-center">View all</a>
                             </div>
                         </div>
+                        <!----- Notification End ------->
+
                         <div class="dropdown ">
                             <a href="#" class="nav-link pr-0 leading-none user-img" data-toggle="dropdown">
-                                <img src="../assets/images/faces/male/25.jpg" alt="profile-img" class="avatar avatar-md brround">
+                                <img src="../assets/images/faces/male/25.jpg" alt="profile-img"
+                                     class="avatar avatar-md brround">
                             </a>
                             <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow ">
                                 <a class="dropdown-item" href="profile.html">
@@ -228,6 +246,7 @@
                                     <i class="dropdown-icon  icon icon-settings"></i> Account Settings
                                 </a>
                                 <a class="dropdown-item" href="login.html">
+
                                     <i class="dropdown-icon icon icon-power"></i> Log out
                                 </a>
                             </div>
@@ -255,13 +274,17 @@
             </div>
             <ul class="side-menu">
                 <li class="slide">
-                    <a class="side-menu__item" data-toggle="slide" href="#"><i class="side-menu__icon fa fa-tachometer"></i><span class="side-menu__label">Dashboard</span><i class="angle fa fa-angle-right"></i></a>
+                    <a class="side-menu__item" data-toggle="slide" href="#"><i
+                            class="side-menu__icon fa fa-tachometer"></i><span class="side-menu__label">Dashboard</span><i
+                            class="angle fa fa-angle-right"></i></a>
                     <ul class="slide-menu">
                         <li><a class="slide-item" href="index5.html">Dashboard 5</a></li>
                     </ul>
                 </li>
                 <li class="slide">
-                    <a class="side-menu__item" data-toggle="slide" href="#"><i class="side-menu__icon fa fa-cogs"></i><span class="side-menu__label">Admin settings</span><i class="angle fa fa-angle-right"></i></a>
+                    <a class="side-menu__item" data-toggle="slide" href="#"><i
+                            class="side-menu__icon fa fa-cogs"></i><span
+                            class="side-menu__label">Admin settings</span><i class="angle fa fa-angle-right"></i></a>
                     <ul class="slide-menu">
                         <li><a class="slide-item" href="admin-pricing.html">Admin Pricing</a></li>
                         <li><a class="slide-item" href="Ads.html">Ads List</a></li>
@@ -282,7 +305,22 @@
                 </li>
 
                 <li class="slide">
-                    <a class="side-menu__item" data-toggle="slide" href="#"><i class="side-menu__icon fa fa-th-large"></i><span class="side-menu__label">User Management</span><i class="angle fa fa-angle-right"></i></a>
+                    
+                    <a class="side-menu__item" data-toggle="slide" href="#"><i
+                            class="side-menu__icon fa fa-th-large"></i><span class="side-menu__label">Articles</span><i
+                            class="angle fa fa-angle-right"></i></a>
+                    <ul class="slide-menu">
+                        <li>
+                            <a href="{{route("article.add_article")}}" class="slide-item">Add Article</a>
+                        </li>
+                        <li>
+                            <a href="{{route('article')}}" class="slide-item">List Article</a>
+                        </li>
+                    </ul>
+
+                    <a class="side-menu__item" data-toggle="slide" href="#"><i
+                            class="side-menu__icon fa fa-th-large"></i><span
+                            class="side-menu__label">User Management</span><i class="angle fa fa-angle-right"></i></a>
                     <ul class="slide-menu">
                         <li>
                             <a href="{{route('Users.index')}}" class="slide-item">Add New User</a>
@@ -294,47 +332,71 @@
                     </ul>
                 </li>
 
- <li class="slide">
-                    <a class="side-menu__item" data-toggle="slide" href="#"><i class="side-menu__icon fa fa-database"></i><span class="side-menu__label">Pages</span><i class="angle fa fa-angle-right"></i></a>
+                <li class="slide">
+                    <a class="side-menu__item" data-toggle="slide" href="#"><i
+                            class="side-menu__icon fa fa-database"></i><span class="side-menu__label">Pages</span><i
+                            class="angle fa fa-angle-right"></i></a>
                     <ul class="slide-menu">
-                        <li>
-                            <a href="{{route('PagesMgt.index')}}" class="slide-item">Add New Page</a>
+
+
+
+                        <a href="{{route('PagesMgt.index')}}" class="slide-item">Add New Page</a>
                         </li>
                         <li>
                             <a href="{{route('Pages_list.index')}}" class="slide-item">Pages List</a>
                         </li
+                        >
+
                     </ul>
                 </li>
-</ul>
+            </ul>
 
-                <li class="slide">
+            <li class="slide">
 
-                  <a class="side-menu__item"  href="{{route('Role.index')}}"><i class="side-menu__icon fa fa-user"></i><span class="side-menu__label">Roll</span></a>
+                <a class="side-menu__item" href="{{route('Role.index')}}"><i
+                        class="side-menu__icon fa fa-user"></i><span class="side-menu__label">Roll</span></a>
 
-                      </li>
-                         <li class="slide">
+            </li>
+            <li class="slide">
 
-                           <a class="side-menu__item"  href="#"><i class="side-menu__icon fa fa-sliders"></i><span class="side-menu__label">Slider</span></a>
+                <a class="side-menu__item" href="#"><i class="side-menu__icon fa fa-sliders"></i><span
+                        class="side-menu__label">Slider</span></a>
 
-                              </li>
+            </li>
 
-                <li class="slide">
-                    <a class="side-menu__item" data-toggle="slide" href="#"><i class="side-menu__icon fa fa-chain-broken"></i><span class="side-menu__label">Custom  Pages</span><i class="angle fa fa-angle-right"></i></a>
-                    <ul class="slide-menu">
-                        <li>
-                            <a href="login.html" class="slide-item">Login</a>
-                        </li>
-                        <li>
-                            <a href="register.html" class="slide-item">Register</a>
-                        </li>
-                        <li>
-                            <a href="forgot-password.html" class="slide-item">Forgot password</a>
-                        </li>
-                        <li>
-                            <a href="lockscreen.html" class="slide-item">Lock screen</a>
-                        </li>
-                    </ul>
-                </li>
+
+            <li class="slide">
+                <a class="side-menu__item" data-toggle="slide" href="#"><i
+                        class="side-menu__icon fa fa-chain-broken"></i><span
+                        class="side-menu__label">Custom  Pages</span><i class="angle fa fa-angle-right"></i></a>
+                <ul class="slide-menu">
+                    <li>
+                        <a href="login.html" class="slide-item">Login</a>
+                    </li>
+                    <li>
+                        <a href="register.html" class="slide-item">Register</a>
+                    </li>
+                    <li>
+                        <a href="forgot-password.html" class="slide-item">Forgot password</a>
+                    </li>
+                    <li>
+                        <a href="lockscreen.html" class="slide-item">Lock screen</a>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="slide">
+                <a class="side-menu__item" data-toggle="slide" href="#"><i class="side-menu__icon fa fa-image"></i><span
+                        class="side-menu__label">Slider</span><i class="angle fa fa-angle-right"></i></a>
+                <ul class="slide-menu">
+                    <li>
+                        <a href="{{route("slider.index")}}" class="slide-item">List Slider</a>
+                    </li>
+                    <li>
+                        <a href="{{route("slider.create")}}" class="slide-item">Add Slider</a>
+                    </li>
+                </ul>
+            </li>
 
             </ul>
             <div class="app-sidebar-footer">
@@ -385,7 +447,7 @@
 </div>
 
 <!-- Back to top -->
-<a href="#top" id="back-to-top" ><i class="fa fa-rocket"></i></a>
+<a href="#top" id="back-to-top"><i class="fa fa-rocket"></i></a>
 
 
 <!-- Dashboard Core -->
@@ -403,7 +465,6 @@
 <script src="../assets/plugins/toggle-sidebar/sidemenu.js"></script>
 
 
-
 <!--Morris.js Charts Plugin -->
 <script src="../assets/plugins/morris/raphael-min.js"></script>
 <script src="../assets/plugins/morris/morris.js"></script>
@@ -415,6 +476,11 @@
 <!--Counters -->
 <script src="../assets/plugins/counters/counterup.min.js"></script>
 <script src="../assets/plugins/counters/waypoints.min.js"></script>
+
+<!-- Data tables -->
+<script src="../assets/plugins/datatable/jquery.dataTables.min.js"></script>
+<script src="../assets/plugins/datatable/dataTables.bootstrap4.min.js"></script>
+<script src="../assets/js/datatable.js"></script>
 
 <!-- Custom scroll bar Js-->
 <script src="../assets/plugins/scroll-bar/jquery.mCustomScrollbar.concat.min.js"></script>
@@ -428,12 +494,6 @@
 
 <!-- Custom Js-->
 <script src="../assets/js/admin-custom.js"></script>
-
-
-<!-- Data tables -->
-<script src="../assets/plugins/datatable/jquery.dataTables.min.js"></script>
-<script src="../assets/plugins/datatable/dataTables.bootstrap4.min.js"></script>
-<script src="../assets/js/datatable.js"></script>
 
 
 

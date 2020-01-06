@@ -1,9 +1,6 @@
 @extends('backend._partial._master')
 
 @section('main_content')
-
-
-
 <div class="container">
     <div align="right">
   <button type="button" class="btn btn-primary waves-effect waves-light btn-md" data-toggle="modal" data-target="#myModal">Add New Role</button>
@@ -103,23 +100,12 @@ $(document).ready(function() {
                     {
                         error_html += '<div class="alert alert-danger">'+data.error[count]+'</div>';
                     }
-                    $('#form_output').html(error_html);
                 }
-                else
-                {
-                    $('#form_output').html(data.success);
-                    $('#pages_form')[0].reset();
-                    $('#action').val('Add');
-                    $('.modal-title').text('Add Data');
-                    $('#button_action').val('insert');
-                    $('#pages_table').DataTable().ajax.reload();
-                }
-            }
-        })
-    });
+            })
+        });
 
 
-</script>
+    </script>
 
 
 
