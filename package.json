@@ -23,7 +23,10 @@
         "vue-template-compiler": "^2.6.11"
     },
     "dependencies": {
+<<<<<<< HEAD
         "ckeditor": "^4.12.1",
+=======
+>>>>>>> 64dedeefad45e0acd3eea9481f38e05580f7ad57
         "ckeditor4": "^4.13.1"
     }
 }

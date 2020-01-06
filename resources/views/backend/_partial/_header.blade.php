@@ -1,4 +1,6 @@
 <head>
+    <link href=" https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/core.js" />
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -13,12 +15,12 @@
     <meta name="MobileOptimized" content="320">
     <link rel="icon" href="../assets/favicon.ico" type="image/x-icon"/>
     <link rel="shortcut icon" type="image/x-icon" href="../assets/favicon.ico" />
+
+
+
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
 
-    <!-- Data table css -->
-    <link href="../assets/plugins/datatable/dataTables.bootstrap4.min.css" rel="stylesheet" />
-    <link href="../assets/plugins/datatable/jquery.dataTables.min.css" rel="stylesheet" />
 
 
     <!-- Title -->
@@ -50,6 +52,22 @@
     <!---Font icons-->
     <link href="../assets/plugins/iconfonts/plugin.css" rel="stylesheet" />
     <link href="../assets/plugins/iconfonts/icons.css" rel="stylesheet" />
+    <!-- Data table css -->
+        <link href="../assets/plugins/datatable/dataTables.bootstrap4.min.css" rel="stylesheet" />
+        <link href="../assets/plugins/datatable/jquery.dataTables.min.css" rel="stylesheet" />
+
+
+
+{{--token--}}
+<script>
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+    </script>
+
+
 
     <!-- sumernot Editor css -->
     <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
