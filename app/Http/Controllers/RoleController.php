@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use App\Role;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-use Yajra\DataTables\Facades\DataTables;
+use Yajra\DataTables\DataTables;
+
 class RoleController extends Controller
 {
 

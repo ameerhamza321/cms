@@ -1,41 +1,43 @@
 @extends('backend._partial._master')
 
+
 @section('main_content')
 
+    <div class="row">
+        <div class="col-md-12 col-lg-12">
+            <!---Add article Button--->
+{{--            <div class="btn-list text-right">--}}
+{{--                <button type="button" name="create_record" class="btn btn-info" id="create_record"--}}
+{{--                        data-toggle="modal" style="margin-left:880px;"><i class="fe fe-plus mr-2"></i>Add--}}
+{{--                </button>--}}
+{{--                <a class="icon" href="#"></a>--}}
+{{--                <a href="#" style="margin-right: 30px" name="create_record" id="create_record" class="btn btn-info btn-md"><i class="fa fa-plus-square mr-2"></i>ADD </a>--}}
+{{--            </div>--}}
+        <!---End Button--->
 
-    <div class="app-content  my-3 my-md-5">
-        <div class="side-app">
-            <div class="row">
-                <div class="col-md-12 col-lg-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <div class="card-title">Data Tables</div>
-                            <button type="button" name="create_record" class="btn btn-info btn-sm" id="create_record"
-                                    data-toggle="modal" style="margin-left:500px;">Add Article
-                            </button>
-                        </div>
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table table-striped table-bordered" id="articleDataTables">
-                                    <thead>
-                                    <tr>
-                                        <th>Title</th>
-                                        <th width="10%">Images</th>
-                                        <th>Description</th>
-                                        <th>Action</th>
-                                    </tr>
-                                    </thead>
-                                </table>
-                            </div>
-                        </div>
-                        <!-- table-wrapper -->
-                    </div>
-                    <!-- section-wrapper -->
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <div class="card-title">Article</div>
                 </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table id="articleDataTables" class="table table-striped table-bordered">
+                            <thead>
+                            <tr>
+                                <th width="100px">Title</th>
+                                <th width="100px">Images</th>
+                                <th>Description</th>
+                                <th width="100px">Action</th>
+                            </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+                <!-- table-wrapper -->
             </div>
+            <!-- section-wrapper -->
         </div>
     </div>
-
 
     <!-- Message Modal -->
     <div class="modal fade" id="formModal" tabindex="-1" role="dialog" aria-hidden="true">
@@ -58,16 +60,16 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-md-4">Select Profile Image : </label>
-                            <div class="col-md-8">
-                                <input type="file" name="image" id="image" />
-                                <span id="store_image"></span>
-                            </div>
-                        </div>
-                        <div class="form-group">
                             <label class="control-label col-md-4">Enter description </label>
                             <div class="col-md-8">
                                 <input type="text" name="description" id="description" class="form-control"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-4">Select Image </label>
+                            <div class="col-md-8">
+                                <input type="file" name="image" id="image"/>
+                                <span id="store_image"></span>
                             </div>
                         </div>
                         <br/>
@@ -87,6 +89,42 @@
     </div>
 
 
+    <div class="col-sm-12 col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">Basic Modal</h3>
+
+            </div>
+            <div class="card-body">
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#confirmModal">View modal</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Confirmation</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Are you sure you want to remove this data?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" name="ok_button" id="ok_button" class="btn btn-danger">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
     <script>
         var BaseUrl = '{{ url('/') }}';
         $(document).ready(function () {
@@ -96,63 +134,100 @@
                 "ajax": "{{ route('articles.list') }}",
                 "columns": [
                     {"data": "title", name: 'title'},
-                    {"data": "image", name: 'image',
+                    {
+                        "data": "image", name: 'image',
                         render: function (data, type, row) {
                             return `<img src="${BaseUrl}/images/${data}" width='100' height='100'>`;
-                        }},
-                    {"data": "description", name: 'description', searchable: false, orderable: false},
+                        }
+                    },
+                    {"data": "shortDescription", name: 'description', searchable: false, orderable: false},
                     {
                         "data": "action",
                         name: 'action',
                         searchable: false,
                         orderable: false,
                         render: function (data, type, row) {
-                            return `<a href="#" data-id="${row.id}" class="btn btn-danger deleteRecord">Delete</a>&nbsp;
-                                        <a href="#${row.id}" class="btn btn-primary">Edit</a>`;
+
+                            return '<td class="text-right">\n' +
+                                '\t\t\t\t\t\t\t\t\t\t\t\t\t\t<a class="icon" href="#"></a>\n' +
+                                '\t\t\t\t\t\t\t\t\t\t\t\t\t\t<a href="#" id="'+row.id+'" class="btn btn-primary btn-sm editRecord"><i class="fa fa-pencil"></i> </a>\n' +
+                                '\n' +
+                                '\n' +
+                                '\t\t\t\t\t\t\t\t\t\t\t\t\t\t<a class="icon deleteRecord" href="#"></a>\n' +
+                                '\t\t\t\t\t\t\t\t\t\t\t\t\t\t<a href="#" id="'+row.id+'" class="btn btn-danger btn-sm deleteRecord"><i class="fa fa-trash"></i> </a>\n' +
+                                '\t\t\t\t\t\t\t\t\t\t\t\t\t</td>';
                         }
                     }
                 ]
             });
 
 
-            $('body').on('click', '.deleteRecord', function (e) {
-                e.preventDefault();
-                var id = $(this).attr('data-id');
-                if (confirm('You are about to delete an article, which will not be revertable')) {
-                    $.ajax({
-                        url: "{{ route('delete.article') }}",
-                        type: 'post',
-                        data: {id: id},
-                        success: function (response) {
-                            console.log(response);
-                            table.ajax.reload();
-                        },
-                        error: function (err) {
-                            console.log(err);
-                        }
-                    })
-                }//.... end if() .....//
+            {{--$('body').on('click', '.deleteRecord', function (e) {--}}
+            {{--    e.preventDefault();--}}
+            {{--    var id = $(this).attr('data-id');--}}
+            {{--    if (confirm('You are about to delete an article, which will not be revertable')) {--}}
+            {{--        $.ajax({--}}
+            {{--            url: "{{ route('delete.article') }}",--}}
+            {{--            type: 'GET',--}}
+            {{--            data: {id: id},--}}
+            {{--            success: function (response) {--}}
+            {{--                console.log(response);--}}
+            {{--                table.ajax.reload();--}}
+            {{--            },--}}
+            {{--            error: function (err) {--}}
+            {{--                console.log(err);--}}
+            {{--            }--}}
+            {{--        })--}}
+            {{--    }//.... end if() .....//--}}
 
-            }) //..... end of delete event.
+            {{--}); //..... end of delete event.--}}
 
             //..... add article event.
-            $('#create_record').click(function(){
+            $('#create_record').click(function () {
                 $('.modal-title').text("Add New Record");
                 $('#action_button').val("Add");
                 $('#action').val("Add");
                 $('#formModal').modal('show');
             });
 
-            $('#sample_form').on('submit', function(event){
+            $('#sample_form').on('submit', function (event) {
                 event.preventDefault();
-                if($('#action').val() == 'Add')
-                {
+                if ($('#action').val() == 'Add') {
                     $.ajax({
-                        url:"{{ route('article.store') }}",
-                        method:"POST",
+                        url: "{{ route('article.store') }}",
+                        method: "POST",
                         data: new FormData(this),
                         contentType: false,
-                        cache:false,
+                        cache: false,
+                        processData: false,
+                        dataType: "json",
+                        success: function (data) {
+                            var html = '';
+                            if (data.errors) {
+                                html = '<div class="alert alert-danger">';
+                                for (var count = 0; count < data.errors.length; count++) {
+                                    html += '<p>' + data.errors[count] + '</p>';
+                                }
+                                html += '</div>';
+                            }
+                            if (data.success) {
+                                html = '<div class="alert alert-success">' + data.success + '</div>';
+                                $('#sample_form')[0].reset();
+                                $('#articleDataTables').DataTable().ajax.reload();
+                            }
+                            $('#form_result').html(html);
+                        }
+                    })
+                }
+
+                 if($('#action').val() == "Edit")
+                {
+                    $.ajax({
+                        url:"{{ route('article.update') }}",
+                        method:"POST",
+                        data:new FormData(this),
+                        contentType: false,
+                        cache: false,
                         processData: false,
                         dataType:"json",
                         success:function(data)
@@ -171,71 +246,65 @@
                             {
                                 html = '<div class="alert alert-success">' + data.success + '</div>';
                                 $('#sample_form')[0].reset();
-                                $('#articleDataTables').DataTable().ajax.reload();
+                                $('#store_image').html('');
+                                $('#user_table').DataTable().ajax.reload();
                             }
                             $('#form_result').html(html);
                         }
-                    })
+                    });
+                    setTimeout(function(){
+                        $('#formModal').modal('hide');
+                        $('#articleDataTables').DataTable().ajax.reload();
+                    }, 2000);
                 }
-
-                // if($('#action').val() == "Edit")
-                {{--{--}}
-                {{--    $.ajax({--}}
-                {{--        url:"{{ route('ajax-crud.update') }}",--}}
-                {{--        method:"POST",--}}
-                {{--        data:new FormData(this),--}}
-                {{--        contentType: false,--}}
-                {{--        cache: false,--}}
-                {{--        processData: false,--}}
-                {{--        dataType:"json",--}}
-                {{--        success:function(data)--}}
-                {{--        {--}}
-                {{--            var html = '';--}}
-                {{--            if(data.errors)--}}
-                {{--            {--}}
-                {{--                html = '<div class="alert alert-danger">';--}}
-                {{--                for(var count = 0; count < data.errors.length; count++)--}}
-                {{--                {--}}
-                {{--                    html += '<p>' + data.errors[count] + '</p>';--}}
-                {{--                }--}}
-                {{--                html += '</div>';--}}
-                {{--            }--}}
-                {{--            if(data.success)--}}
-                {{--            {--}}
-                {{--                html = '<div class="alert alert-success">' + data.success + '</div>';--}}
-                {{--                $('#sample_form')[0].reset();--}}
-                {{--                $('#store_image').html('');--}}
-                {{--                $('#user_table').DataTable().ajax.reload();--}}
-                {{--            }--}}
-                {{--            $('#form_result').html(html);--}}
-                {{--        }--}}
-                {{--    });--}}
-                {{--}--}}
             });
 
-            {{--$(document).on('click', '.edit', function(){--}}
-            {{--    var id = $(this).attr('id');--}}
-            {{--    $('#form_result').html('');--}}
-            {{--    $.ajax({--}}
-            {{--        url:"/ajax-crud/"+id+"/edit",--}}
-            {{--        dataType:"json",--}}
-            {{--        success:function(html){--}}
-            {{--            $('#title').val(html.data.title);--}}
-            {{--            $('#description').val(html.data.description);--}}
-            {{--            $('#store_image').html("<img src={{ URL::to('/') }}/images/" + html.data.image + " width='70' class='img-thumbnail' />");--}}
-            {{--            $('#store_image').append("<input type='hidden' name='hidden_image' value='"+html.data.image+"' />");--}}
-            {{--            $('#hidden_id').val(html.data.id);--}}
-            {{--            $('.modal-title').text("Edit New Record");--}}
-            {{--            $('#action_button').val("Edit");--}}
-            {{--            $('#action').val("Edit");--}}
-            {{--            $('#formModal').modal('show');--}}
-            {{--        }--}}
-            {{--    })--}}
-            {{--});--}}
+                $(document).on('click', '.editRecord', function(){
+                    var id = $(this).attr('id');
+                    $('#form_result').html('');
+                    $.ajax({
+                        url:"/article/"+id+"/edit",
+                        dataType:"json",
+                        success:function(html){
+                            $('#title').val(html.data.title);
+                            $('#description').val(html.data.description);
+                            $('#store_image').html("<img src={{ URL::to('/') }}/images/" + html.data.image + " width='100' class='img-thumbnail' />");
+                            $('#store_image').append("<input type='hidden' name='hidden_image' value='"+html.data.image+"' />");
+                            $('#hidden_id').val(html.data.id);
+                            $('.modal-title').text("Edit New Record");
+                            $('#action_button').val("Edit");
+                            $('#action').val("Edit");
+                            $('#formModal').modal('show');
+
+                        }
+                    })
+                });
 
             var user_id;
 
+            $(document).on('click', '.deleteRecord', function(){
+                user_id = $(this).attr('id');
+                $('#confirmModal').modal('show');
+            });
+
+            $('#ok_button').click(function(){
+                $.ajax({
+                    url:"article/destroy/"+user_id,
+                    beforeSend:function(){
+                        $('#ok_button').text('Deleting...');
+                    },
+                    success:function(data)
+                    {
+                        setTimeout(function(){
+                            $('#confirmModal').modal('hide');
+                            $('#articleDataTables').DataTable().ajax.reload();
+                        }, 2000);
+                    }
+                })
+            });
+
         });//.... end ready() .....//
+
     </script>
 
 @endsection

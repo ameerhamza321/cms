@@ -23,21 +23,6 @@
 
 
 
-
-
-
-
-
-
-
-<!-- sumernot Editor css -->
-		<link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
-          <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
-          <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
-          <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.css" rel="stylesheet">
-          <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.js"></script>
-
-
     <!-- Title -->
     <title>Claylist – Clean & Modern Admin Dashboard Bootstrap 4  HTML Template</title>
     <link rel="stylesheet" href="../assets/fonts/fonts/font-awesome.min.css">
@@ -45,6 +30,8 @@
     <!-- Sidemenu Css -->
     <link href="../assets/plugins/toggle-sidebar/sidemenu.css" rel="stylesheet" />
 
+    <!-- Slect2 css -->
+    <link href="../assets/plugins/select2/select2.min.css" rel="stylesheet" />
 
     <!-- Bootstrap Css -->
     <link href="../assets/plugins/bootstrap-4.3.1-dist/css/bootstrap.min.css" rel="stylesheet" />
@@ -81,5 +68,19 @@
     </script>
 
 
+
+    <!-- sumernot Editor css -->
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
+    <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.css" rel="stylesheet">
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.js"></script>
+
+    <script>
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+    </script>
 
 </head>

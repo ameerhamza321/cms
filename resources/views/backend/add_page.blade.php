@@ -15,7 +15,6 @@
 @method('POST')
 @csrf
 <span id="form_output"></span>
-
 <div class="form-group">
 <label class="form-label">Page Ttile</label>
 <input type="text" name="title" id="title" class="form-control"  placeholder="Enter Page Title">

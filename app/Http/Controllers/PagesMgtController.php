@@ -31,10 +31,8 @@ class PagesMgtController extends Controller
 
     function getdata(Pages_mgt $pages_mgt)
     {
-        $page =Pages_mgt::cursor();
-        return DataTables::of($page)->addColumn('shortDescription', function($page) {
-            return strip_tags(Str::words($page->description, 20));
-        })->make(true);
+        $page =Pages_mgt::all();
+        return DataTables::of($page)->make(true);
     }
 
     /**
@@ -105,22 +103,6 @@ class PagesMgtController extends Controller
 
 
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     public function create()

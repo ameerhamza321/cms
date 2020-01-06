@@ -38,6 +38,7 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+
     /**
      * relationship many to many
      * users and roles
@@ -49,6 +50,4 @@ class User extends Authenticatable
         return $this->belongsToMany('App\Role');
 
     }
-
-
 }
