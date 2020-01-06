@@ -21,7 +21,8 @@ class CreatePagesMgtsTable extends Migration
             $table->string('meta_title', 255);
             $table->string('meta_keywords', 255);
             $table->string('meta_description', 300);
-            $table->text('description');//text editor
+            $table->longText('description');//text editor
+
             $table->softDeletes();
 
             $table->timestamps();

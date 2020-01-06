@@ -5,8 +5,14 @@ namespace App\Http\Controllers;
 use App\Role;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Yajra\DataTables\Facades\DataTables;
 class RoleController extends Controller
 {
+
+    public function __construct(){
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -29,7 +35,7 @@ class RoleController extends Controller
     function getdata(Request $request)
     {
         $page =Role::all();
-        return DataTable::of($page)->make(true);
+        return DataTables::of($page)->make(true);
     }
 
     /**
@@ -41,7 +47,7 @@ class RoleController extends Controller
     function postdata(Request $request)
     {
         $validation = Validator::make($request->all(), [
-            'title' => 'required',
+            'name' => 'required',
 
         ]);
 
@@ -59,7 +65,7 @@ class RoleController extends Controller
             if($request->get('button_action') == "insert")
             {
                 $pages = new Role([
-                    'title'    =>  $request->get('title'),
+                    'name'    =>  $request->get('name'),
 
                 ]);
                 $pages->save();
