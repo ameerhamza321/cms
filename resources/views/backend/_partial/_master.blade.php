@@ -334,7 +334,7 @@
                             <a href="{{route("slider.index")}}" class="slide-item">List Slider</a>
                         </li>
                         <li>
-                            <a href="{{route("slider.create")}}" class="slide-item">Create Slider</a>
+                            <a href="{{route("slider.create")}}" class="slide-item">Add Slider</a>
                         </li>
                     </ul>
                 </li>

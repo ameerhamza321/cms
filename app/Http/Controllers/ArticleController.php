@@ -82,38 +82,61 @@ class ArticleController extends Controller
         return view('backend.add_article');
 
     }
-//    function postdata(Request $request)
-//    {
-//        $validation = Validator::make($request->all(), [
-//            'title' => 'required',
-//            'image' => 'image',
-//            'description' => 'required',
-//        ]);
-//
-//        $error_array = array();
-//        $success_output = '';
-//        if ($validation->fails()) {
-//            foreach ($validation->messages()->getMessages() as $field_name => $messages) {
-//                $error_array[] = $messages;
-//            }
-//        } else {
-//            if ($request->get('button_action') == "insert") {
-//                $pages = new Article([
-//                    'title' => $request->get('title'),
-//                    'image' => $request->get('images'),
-//                    'description' => $request->get('description'),
-//                    'user_id' => auth()->user()->id
-//                ]);
-//                $pages->save();
-//                $success_output = '<div class="alert alert-success">Data Inserted</div>';
-//            }
-//        }
-//        $output = array(
-//            'error' => $error_array,
-//            'success' => $success_output
-//        );
-//        echo json_encode($output);
-//    }
 
+
+    public function edit($id)
+    {
+        if(request()->ajax())
+        {
+            $data = Article::findOrFail($id);
+            return response()->json(['data' => $data]);
+        }
+    }
+
+    public function update(Request $request)
+    {
+        $image_name = $request->hidden_image;
+        $image = $request->file('image');
+        if ($image != '') {
+            $rules = array(
+                'title' => 'required',
+                'image' => 'sometimes|required|image|max:2048',
+                'description' => 'required'
+            );
+            $error = Validator::make($request->all(), $rules);
+            if ($error->fails()) {
+                return response()->json(['errors' => $error->errors()->all()]);
+            }
+
+            $image_name = rand() . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path('images'), $image_name);
+        } else {
+            $rules = array(
+                'title' => 'required',
+                'description' => 'required'
+            );
+
+            $error = Validator::make($request->all(), $rules);
+
+            if ($error->fails()) {
+                return response()->json(['errors' => $error->errors()->all()]);
+            }
+        }
+        $form_data = array(
+            'title' => $request->title,
+            'image' => $image_name,
+            'description' => $request->description,
+            'user_id' => auth()->user()->id
+        );
+        Article::whereId($request->hidden_id)->update($form_data);
+
+        return response()->json(['success' => 'Data is successfully updated']);
+    }
+
+    public function destroy($id)
+    {
+        $data = Article::findOrFail($id);
+        $data->delete();
+    }
 
 }

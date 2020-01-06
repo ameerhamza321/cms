@@ -25,13 +25,6 @@
                         <label class="form-label">Description</label>
                         <textarea class="content" name="description" id="description"></textarea>
                     </div>
-{{--                    <div class="form-group">--}}
-{{--                        <label class="form-label">Select Image </label>--}}
-{{--                        <div class="col-md-8">--}}
-{{--                            <input type="file" name="image" id="image"/>--}}
-{{--                            <span id="store_image"></span>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
 
                     <div class="form-group">
                         <div class="custom-file">
@@ -43,8 +36,8 @@
                     <div class="form-group mb-0">
                         <div class="checkbox checkbox-secondary">
                             <input type="hidden" name="button_action" id="button_action" value="insert"/>
-                            <input type="submit" name="submit" id="action" value="Submit"
-                                   class="btn btn-primary waves-effect waves-light"/>
+                            <input type="submit" name="submit" id="action" value="Save"
+                                   class="btn btn-info waves-effect waves-light"/>
                         </div>
                     </div>
 
@@ -74,18 +67,19 @@
             $('#pages_form')[0].reset();
             $('#form_output').html('');
             $('#button_action').val('insert');
-            $('#action').val('Submit');
+            $('#action').val('Save');
         });
 
         $('#pages_form').on('submit', function (event) {
             event.preventDefault();
-            var form_data = new FormData(document.getElementById('pages_form'));
-            console.log(form_data)
             $.ajax({
-                url: "{{ route('article.store') }}",
-                method: "POST",
-                data: form_data,
-                dataType: "json",
+                url:"{{ route('article.store') }}",
+                method:"POST",
+                data:new FormData($("#pages_form")[0]),
+                dataType:'JSON',
+                contentType: false,
+                cache: false,
+                processData: false,
                 success: function (data) {
                     if (data.error.length > 0) {
                         var error_html = '';
@@ -96,13 +90,16 @@
                     } else {
                         $('#form_output').html(data.success);
                         $('#pages_form')[0].reset();
-                        $('#action').val('Submit');
+                        $('#action').val('Save');
                         $('#button_action').val('insert');
+
                         $('#articleDataTables').DataTable().ajax.reload();
                     }
                 }
             })
         });
+
+
 
 
     </script>

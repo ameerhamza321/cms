@@ -1,22 +1,18 @@
+
 @extends('backend._partial._master')
 @section('main_content')
 
     <div class="row">
         <div class="col-md-12 col-lg-12">
             @if(session('successMsg'))
-                <div class="alert alert-success">
+                <div class="alert alert-success" role="alert">
                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                    <strong>Success Message</strong>
-                    <hr class="message-inner-separator">
-                    <p>{{session('successMsg')}}</p>
+                    <i class="fa fa-check-circle-o mr-2" aria-hidden="true"></i> {{session('successMsg')}}
                 </div>
             @endif
             <div class="card">
                 <div class="card-header bg-primary text-white">
-                    <div class="card-title">Slide</div>
-                    <button type="button" name="create_record" class="btn btn-dark" id="create_record"
-                            data-toggle="modal" style="margin-left:880px;"><i class="fe fe-plus mr-2"></i>Add
-                    </button>
+                    <div class="card-title">Slider</div>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -35,8 +31,19 @@
 
                                     <td>{{ $slider->title }}</td>
                                     <td>{{ $slider->sub_title }}</td>
-                                    <td>{{ $slider->image }}</td>
+                                    <td><img src="{{asset('uploads/slider/' . $slider->image)}}" width="50px" alt="image"/></td>
 
+                                    <td>
+                                        <a class="icon" href="#"></a>
+                                        <a href="/edit/{{ $slider->id }}" class="btn btn-primary btn-sm"><i class="fa fa-pencil"></i> </a>
+
+                                        <a class="icon" href="#"></a>
+                                        <a href="#" class="btn btn-green btn-sm"><i class="fa fa-eye"></i> </a>
+
+                                        <a class="icon deleteRecord" href="#"></a>
+                                        <a href="#" class="btn btn-danger btn-sm deleteRecord"><i class="fa fa-trash"></i> </a>
+
+                                    </td>
                                     @endforeach
                             </tbody>
                         </table>

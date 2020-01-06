@@ -83,9 +83,10 @@ class SliderController extends Controller
      * @param  \App\Slider  $slider
      * @return \Illuminate\Http\Response
      */
-    public function edit(Slider $slider)
+    public function edit($id)
     {
-        //
+        $sliders = Slider::findorfail($id);
+        return view('backend.update_slider', compact('sliders', $sliders));
     }
 
     /**
@@ -95,9 +96,36 @@ class SliderController extends Controller
      * @param  \App\Slider  $slider
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Slider $slider)
+    public function update(Request $request, $id)
     {
-        //
+
+        $this->validate($request,[
+            'title' => 'required',
+            'sub_title' => 'required',
+            'image' => 'mimes:jpeg,jpg,bmp,png',
+        ]);
+        $image = $request->file('image');
+        $slug = $request->sub_title;
+        $slider = Slider::find($id);
+        if (isset($image))
+        {
+            $currentDate = Carbon::now()->toDateString();
+            $image_name = $slug .'-'. $currentDate .'-'. uniqid() .'.'. $image->getClientOriginalExtension();
+            if (!file_exists('uploads/slider'))
+            {
+                mkdir('uploads/slider', 0777 , true);
+            }
+            $image->move('uploads/slider',$image_name);
+        }else {
+            $image_name = $slider->image;
+        }
+
+        $slider->title = $request->title;
+        $slider->sub_title = $request->sub_title;
+        $slider->image = $image_name;
+        $slider->save();
+        return redirect()->route('slider.index')->with('successMsg','Slider Successfully Updated');
+
     }
 
     /**
