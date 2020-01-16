@@ -18,8 +18,6 @@ class PagesMgtController extends Controller
     public function index(Request $request)
     {
 
-
-       /* return DataTable::of($page)->make(true);*/
        return view('backend.add_page');
     }
 
@@ -31,8 +29,9 @@ class PagesMgtController extends Controller
 
     function getdata(Pages_mgt $pages_mgt)
     {
-        $page =Pages_mgt::all();
+        $page = Pages_mgt::all();
         return DataTables::of($page)->make(true);
+
     }
 
     /**

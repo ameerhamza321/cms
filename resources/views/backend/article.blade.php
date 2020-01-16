@@ -39,6 +39,8 @@
         </div>
     </div>
 
+
+
     <!-- Message Modal -->
     <div class="modal fade" id="formModal" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -89,18 +91,6 @@
     </div>
 
 
-    <div class="col-sm-12 col-md-6">
-        <div class="card">
-            <div class="card-header">
-                <h3 class="card-title">Basic Modal</h3>
-
-            </div>
-            <div class="card-body">
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#confirmModal">View modal</button>
-            </div>
-        </div>
-    </div>
-
     <!-- Modal -->
     <div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -126,6 +116,10 @@
 
 
     <script>
+        $('#description').summernote({
+            height: 250
+        });
+
         var BaseUrl = '{{ url('/') }}';
         $(document).ready(function () {
             var table = $('#articleDataTables').DataTable({
@@ -148,39 +142,11 @@
                         orderable: false,
                         render: function (data, type, row) {
 
-                            return '<td class="text-right">\n' +
-                                '\t\t\t\t\t\t\t\t\t\t\t\t\t\t<a class="icon" href="#"></a>\n' +
-                                '\t\t\t\t\t\t\t\t\t\t\t\t\t\t<a href="#" id="'+row.id+'" class="btn btn-primary btn-sm editRecord"><i class="fa fa-pencil"></i> </a>\n' +
-                                '\n' +
-                                '\n' +
-                                '\t\t\t\t\t\t\t\t\t\t\t\t\t\t<a class="icon deleteRecord" href="#"></a>\n' +
-                                '\t\t\t\t\t\t\t\t\t\t\t\t\t\t<a href="#" id="'+row.id+'" class="btn btn-danger btn-sm deleteRecord"><i class="fa fa-trash"></i> </a>\n' +
-                                '\t\t\t\t\t\t\t\t\t\t\t\t\t</td>';
+                            return data;
                         }
                     }
                 ]
             });
-
-
-            {{--$('body').on('click', '.deleteRecord', function (e) {--}}
-            {{--    e.preventDefault();--}}
-            {{--    var id = $(this).attr('data-id');--}}
-            {{--    if (confirm('You are about to delete an article, which will not be revertable')) {--}}
-            {{--        $.ajax({--}}
-            {{--            url: "{{ route('delete.article') }}",--}}
-            {{--            type: 'GET',--}}
-            {{--            data: {id: id},--}}
-            {{--            success: function (response) {--}}
-            {{--                console.log(response);--}}
-            {{--                table.ajax.reload();--}}
-            {{--            },--}}
-            {{--            error: function (err) {--}}
-            {{--                console.log(err);--}}
-            {{--            }--}}
-            {{--        })--}}
-            {{--    }//.... end if() .....//--}}
-
-            {{--}); //..... end of delete event.--}}
 
             //..... add article event.
             $('#create_record').click(function () {
@@ -220,88 +186,89 @@
                     })
                 }
 
-                 if($('#action').val() == "Edit")
-                {
-                    $.ajax({
-                        url:"{{ route('article.update') }}",
-                        method:"POST",
-                        data:new FormData(this),
-                        contentType: false,
-                        cache: false,
-                        processData: false,
-                        dataType:"json",
-                        success:function(data)
-                        {
-                            var html = '';
-                            if(data.errors)
-                            {
-                                html = '<div class="alert alert-danger">';
-                                for(var count = 0; count < data.errors.length; count++)
-                                {
-                                    html += '<p>' + data.errors[count] + '</p>';
-                                }
-                                html += '</div>';
-                            }
-                            if(data.success)
-                            {
-                                html = '<div class="alert alert-success">' + data.success + '</div>';
-                                $('#sample_form')[0].reset();
-                                $('#store_image').html('');
-                                $('#user_table').DataTable().ajax.reload();
-                            }
-                            $('#form_result').html(html);
-                        }
-                    });
-                    setTimeout(function(){
-                        $('#formModal').modal('hide');
-                        $('#articleDataTables').DataTable().ajax.reload();
-                    }, 2000);
-                }
+                {{-- if($('#action').val() == "Edit")--}}
+                {{--{--}}
+                {{--    $.ajax({--}}
+                {{--        url:"{{ route('article.update') }}",--}}
+                {{--        method:"POST",--}}
+                {{--        data:new FormData(this),--}}
+                {{--        contentType: false,--}}
+                {{--        cache: false,--}}
+                {{--        processData: false,--}}
+                {{--        dataType:"json",--}}
+                {{--        success:function(data)--}}
+                {{--        {--}}
+                {{--            var html = '';--}}
+                {{--            if(data.errors)--}}
+                {{--            {--}}
+                {{--                html = '<div class="alert alert-danger">';--}}
+                {{--                for(var count = 0; count < data.errors.length; count++)--}}
+                {{--                {--}}
+                {{--                    html += '<p>' + data.errors[count] + '</p>';--}}
+                {{--                }--}}
+                {{--                html += '</div>';--}}
+                {{--            }--}}
+                {{--            if(data.success)--}}
+                {{--            {--}}
+                {{--                html = '<div class="alert alert-success">' + data.success + '</div>';--}}
+                {{--                $('#sample_form')[0].reset();--}}
+                {{--                $('#store_image').html('');--}}
+                {{--                $('#user_table').DataTable().ajax.reload();--}}
+                {{--            }--}}
+                {{--            $('#form_result').html(html);--}}
+                {{--        }--}}
+                {{--    });--}}
+                {{--    setTimeout(function(){--}}
+                {{--        $('#formModal').modal('hide');--}}
+                {{--        $('#articleDataTables').DataTable().ajax.reload();--}}
+                {{--    }, 2000);--}}
+                {{--}--}}
             });
 
-                $(document).on('click', '.editRecord', function(){
-                    var id = $(this).attr('id');
-                    $('#form_result').html('');
-                    $.ajax({
-                        url:"/article/"+id+"/edit",
-                        dataType:"json",
-                        success:function(html){
-                            $('#title').val(html.data.title);
-                            $('#description').val(html.data.description);
-                            $('#store_image').html("<img src={{ URL::to('/') }}/images/" + html.data.image + " width='100' class='img-thumbnail' />");
-                            $('#store_image').append("<input type='hidden' name='hidden_image' value='"+html.data.image+"' />");
-                            $('#hidden_id').val(html.data.id);
-                            $('.modal-title').text("Edit New Record");
-                            $('#action_button').val("Edit");
-                            $('#action').val("Edit");
-                            $('#formModal').modal('show');
+                {{--$(document).on('click', '.editRecord', function(){--}}
+                {{--    var id = $(this).attr('id');--}}
+                {{--    $('#form_result').html('');--}}
+                {{--    $.ajax({--}}
+                {{--        url:"/article/"+id+"/edit",--}}
+                {{--        dataType:"json",--}}
+                {{--        success:function(html){--}}
 
-                        }
-                    })
-                });
+                {{--            $('#title').val(html.data.title);--}}
+                {{--            $('#description').val(html.data.description);--}}
+                {{--            $('#store_image').html("<img src={{ URL::to('/') }}/images/" + html.data.image + " width='100' class='img-thumbnail' />");--}}
+                {{--            $('#store_image').append("<input type='hidden' name='hidden_image' value='"+html.data.image+"' />");--}}
+                {{--            $('#hidden_id').val(html.data.id);--}}
+                {{--            $('.modal-title').text("Edit New Record");--}}
+                {{--            $('#action_button').val("Edit");--}}
+                {{--            $('#action').val("Edit");--}}
+                {{--            $('#formModal').modal('show');--}}
 
-            var user_id;
+                {{--        }--}}
+                {{--    })--}}
+                {{--});--}}
 
-            $(document).on('click', '.deleteRecord', function(){
-                user_id = $(this).attr('id');
-                $('#confirmModal').modal('show');
-            });
-
-            $('#ok_button').click(function(){
-                $.ajax({
-                    url:"article/destroy/"+user_id,
-                    beforeSend:function(){
-                        $('#ok_button').text('Deleting...');
-                    },
-                    success:function(data)
-                    {
-                        setTimeout(function(){
-                            $('#confirmModal').modal('hide');
-                            $('#articleDataTables').DataTable().ajax.reload();
-                        }, 2000);
-                    }
-                })
-            });
+            // var user_id;
+            //
+            // $(document).on('click', '.deleteRecord', function(){
+            //     user_id = $(this).attr('id');
+            //     $('#confirmModal').modal('show');
+            // });
+            //
+            // $('#ok_button').click(function(){
+            //     $.ajax({
+            //         url:"article/destroy/"+user_id,
+            //         beforeSend:function(){
+            //             $('#ok_button').text('Deleting...');
+            //         },
+            //         success:function(data)
+            //         {
+            //             setTimeout(function(){
+            //                 $('#confirmModal').modal('hide');
+            //                 $('#articleDataTables').DataTable().ajax.reload();
+            //             }, 1000);
+            //         }
+            //     })
+            // });
 
         });//.... end ready() .....//
 

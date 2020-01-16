@@ -1,5 +1,8 @@
 @extends('frontend._partial._master')
+
 @section('main_content')
+
+@include('frontend._partial.breadcrumb')
 
 
 <!--Add listing-->
@@ -9,202 +12,40 @@
             <div class="col-xl-8 col-lg-8 col-md-12">
                 <!--Add lists-->
                 <div class="row">
+                    @foreach($articles as $article)
                     <div class="col-xl-12 col-lg-12 col-md-12">
                         <div class="card overflow-hidden">
-                            <div class="ribbon ribbon-top-left text-warning"><span class="bg-warning">featured</span></div>
+
                             <div class="row no-gutters blog-list">
+                                @if($article->image_url)
                                 <div class="col-xl-4 col-lg-12 col-md-12">
                                     <div class="item7-card-img">
                                         <a href="classified.html"></a>
-                                        <img src="../assets/images/products/f1.png" alt="img" class="cover-image">
-                                        <div class="item7-card-text">
-                                            <span class="badge badge-success">Restaurant</span>
-                                        </div>
+                                        <img src="{{ $article->image_url }}" alt="img" class="cover-image">
                                     </div>
                                 </div>
+                                @endif
                                 <div class="col-xl-8 col-lg-12 col-md-12">
                                     <div class="card-body">
                                         <div class="item7-card-desc d-flex mb-1">
-                                            <a href="#"><i class="fa fa-calendar-o text-muted mr-2"></i>Dec-03-2018</a>
-                                            <a href="#"><i class="fa fa-user text-muted mr-2"></i>Nissy Sten</a>
+                                            <a href="#"><i class="fa fa-calendar-o text-muted mr-2"></i>{{ $article->date }}</a>
+                                            <a href="#"><i class="fa fa-user text-muted mr-2"></i>{{$article->user->name}}</a>
                                             <div class="ml-auto">
                                                 <a href="#"><i class="fa fa-comment-o text-muted mr-2"></i>4 Comments</a>
                                             </div>
                                         </div>
-                                        <a href="#" class="text-dark"><h4 class="font-weight-semibold mb-3">Excepteur sint occaecat cupidatat proident</h4></a>
-                                        <p class="mb-1">Ut enim ad minima veniam, quis nostrum exercitationem,Ut enim minima veniam, quis nostrum exercitationem
-                                        </p>
-                                        <a href="#" class="btn btn-primary btn-sm mt-4">Read More</a>
+                                        <a href="{{ route('view_article', $article->id ) }}" class="text-dark"><h4 class="font-weight-semibold mb-3">{{ $article->title }}</h4></a>
+                                        <p class="mb-1">{!! Str::words($article->description, 20, '.....') !!}</p>
+                                        <a href="{{ route('view_article', $article->id ) }}" class="btn btn-primary btn-sm mt-4">Read More</a>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-xl-12 col-lg-12 col-md-12">
-                        <div class="card">
-                            <div class="row no-gutters blog-list">
-                                <div class="col-xl-4 col-lg-12 col-md-12">
-                                    <div class="item7-card-img">
-                                        <a href="classified.html"></a>
-                                        <img src="../assets/images/products/j2.png" alt="img" class="cover-image">
-                                        <div class="item7-card-text">
-                                            <span class="badge badge-info">Jobs</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xl-8 col-lg-12 col-md-12">
-                                    <div class="card-body">
-                                        <div class="item7-card-desc d-flex mb-1">
-                                            <a href="#"><i class="fa fa-calendar-o text-muted mr-2"></i>Nov-28-2018</a>
-                                            <a href="#"><i class="fa fa-user text-muted mr-2"></i>Nissy Sten</a>
-                                            <div class="ml-auto">
-                                                <a href="#"><i class="fa fa-comment-o text-muted mr-2"></i>2 Comments</a>
-                                            </div>
-                                        </div>
-                                        <a href="#" class="text-dark"><h4 class="font-weight-semibold mb-4">Sed ut perspiciatis unde omnis iste</h4></a>
-                                        <p class="mb-1">Ut enim ad minima veniam, quis nostrum exercitationem,Ut enim minima veniam, quis nostrum exercitationem
-                                        </p>
-                                        <a href="#" class="btn btn-primary btn-sm mt-4">Read More</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-12 col-lg-12 col-md-12">
-                        <div class="card overflow-hidden">
-                            <div class="ribbon ribbon-top-left text-danger"><span class="bg-danger">urgent</span></div>
-                            <div class="row no-gutters blog-list">
-                                <div class="col-xl-4 col-lg-12 col-md-12">
-                                    <div class="item7-card-img">
-                                        <a href="classified.html"></a>
-                                        <img src="../assets/images/products/b2.png" alt="img" class="cover-image">
-                                        <div class="item7-card-text">
-                                            <span class="badge badge-success">Beauty & Spa</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xl-8 col-lg-12 col-md-12">
-                                    <div class="card-body">
-                                        <div class="item7-card-desc d-flex mb-1">
-                                            <a href="#"><i class="fa fa-calendar-o text-muted mr-2"></i>Nov-19-2018</a>
-                                            <a href="#"><i class="fa fa-user text-muted mr-2"></i>Nissy Sten</a>
-                                            <div class="ml-auto">
-                                                <a href="#"><i class="fa fa-comment-o text-muted mr-2"></i>8 Comments</a>
-                                            </div>
-                                        </div>
-                                        <a href="#" class="text-dark"><h4 class="font-weight-semibold mb-4">At vero eos et accusamus et iusto</h4></a>
-                                        <p class="mb-1">Ut enim ad minima veniam, quis nostrum exercitationem,Ut enim minima veniam, quis nostrum exercitationem
-                                        </p>
-                                        <a href="#" class="btn btn-primary btn-sm mt-4">Read More</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-12 col-lg-12 col-md-12">
-                        <div class="card">
-                            <div class="row no-gutters blog-list">
-                                <div class="col-xl-4 col-lg-12 col-md-12">
-                                    <div class="item7-card-img">
-                                        <a href="classified.html"></a>
-                                        <img src="../assets/images/products/h3.png" alt="img" class="cover-image">
-                                        <div class="item7-card-text">
-                                            <span class="badge badge-info">Real Estate</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xl-8 col-lg-12 col-md-12">
-                                    <div class="card-body">
-                                        <div class="item7-card-desc d-flex mb-1">
-                                            <a href="#"><i class="fa fa-calendar-o text-muted mr-2"></i>Nov-13-2018</a>
-                                            <a href="#"><i class="fa fa-user text-muted mr-2"></i>Nissy Sten</a>
-                                            <div class="ml-auto">
-                                                <a href="#"><i class="fa fa-comment-o text-muted mr-2"></i>7 Comments</a>
-                                            </div>
-                                        </div>
-                                        <a href="#" class="text-dark"><h4 class="font-weight-semibold mb-4"> Nam libero tempore, cum soluta nobis</h4> </a>
-                                        <p class="mb-1">Ut enim ad minima veniam, quis nostrum exercitationem,Ut enim minima veniam, quis nostrum exercitationem
-                                        </p>
-                                        <a href="#" class="btn btn-primary btn-sm mt-4">Read More</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-12 col-lg-12 col-md-12">
-                        <div class="card">
-                            <div class="row no-gutters blog-list">
-                                <div class="col-xl-4 col-lg-12 col-md-12">
-                                    <div class="item7-card-img">
-                                        <a href="classified.html"></a>
-                                        <img src="../assets/images/products/v4.png" alt="img" class="cover-image">
-                                        <div class="item7-card-text">
-                                            <span class="badge badge-success">Vechicle</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xl-8 col-lg-12 col-md-12">
-                                    <div class="card-body ">
-                                        <div class="item7-card-desc d-flex mb-1">
-                                            <a href="#"><i class="fa fa-calendar-o text-muted mr-2"></i>Dec-10-2018</a>
-                                            <a href="#"><i class="fa fa-user text-muted mr-2"></i>Nissy Sten</a>
-                                            <div class="ml-auto">
-                                                <a href="#"><i class="fa fa-comment-o text-muted mr-2"></i>1 Comments</a>
-                                            </div>
-                                        </div>
-                                        <a href="#" class="text-dark"><h4 class="font-weight-semibold mb-4">Certain circumstances the claims</h4></a>
-                                        <p class="mb-1">Ut enim ad minima veniam, quis nostrum exercitationem,Ut enim minima veniam, quis nostrum exercitationem
-                                        </p>
-                                        <a href="#" class="btn btn-primary btn-sm mt-4">Read More</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-12 col-lg-12 col-md-12">
-                        <div class="card overflow-hidden">
-                            <div class="ribbon ribbon-top-left text-primary"><span class="bg-primary">featured</span></div>
-                            <div class="row no-gutters blog-list">
-                                <div class="col-xl-4 col-lg-12 col-md-12">
-                                    <div class="item7-card-img">
-                                        <a href="classified.html"></a>
-                                        <img src="../assets/images/products/pe1.png" alt="img" class="cover-image">
-                                        <div class="item7-card-text">
-                                            <span class="badge badge-info">Pets & Animals</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xl-8 col-lg-12 col-md-12">
-                                    <div class="card-body">
-                                        <div class="item7-card-desc d-flex mb-1">
-                                            <a href="#"><i class="fa fa-calendar-o text-muted mr-2"></i>Nov-01-2018</a>
-                                            <a href="#"><i class="fa fa-user text-muted mr-2"></i>Nissy Sten</a>
-                                            <div class="ml-auto">
-                                                <a href="#"><i class="fa fa-comment-o text-muted mr-2"></i>5 Comments</a>
-                                            </div>
-                                        </div>
-                                        <a href="#" class="text-dark"><h4 class="font-weight-semibold mb-4">Itaque earum rerum sapiente delectus</h4></a>
-                                        <p class="mb-1">Ut enim ad minima veniam, quis nostrum exercitationem,Ut enim minima veniam, quis nostrum exercitationem
-                                        </p>
-                                        <a href="#" class="btn btn-primary btn-sm mt-4">Read More</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
                 <div class="center-block text-center">
-                    <ul class="pagination mb-5 mb-lg-0">
-                        <li class="page-item page-prev disabled">
-                            <a class="page-link" href="#" tabindex="-1">Prev</a>
-                        </li>
-                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item page-next">
-                            <a class="page-link" href="#">Next</a>
-                        </li>
-                    </ul>
+                    {{ $articles->links() }}
                 </div>
                 <!--/Add lists-->
             </div>

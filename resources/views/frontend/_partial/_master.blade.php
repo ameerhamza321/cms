@@ -8,7 +8,7 @@
 
 <!--Loader-->
 <div id="global-loader">
-    <img src="../assets/images/products/products/loader.png" class="loader-img floating" alt="">
+    <img src="{{ asset('assets') }}/images/products/products/loader.png" class="loader-img floating" alt="">
 </div>
 
 <!--Topbar-->
@@ -279,161 +279,12 @@
             <!--Nav-->
             <nav class="horizontalMenu clearfix d-md-flex">
                 <ul class="horizontalMenu-list">
-                    <li aria-haspopup="true"><a href="#">Home <span class="fa fa-caret-down m-0"></span></a>
-                        <ul class="sub-menu">
-                            <li aria-haspopup="true"><a href="index.html">Home-default</a></li>
-                            <li aria-haspopup="true"><a href="classifieds-text.html">Home style-1</a></li>
-                            <li aria-haspopup="true"><a href="classifieds-slides.html">Home style-2</a></li>
-                            <li aria-haspopup="true"><a href="classifieds-video.html">Home style-3</a></li>
-                            <li aria-haspopup="true"><a href="classifieds-animation.html">Home style-4 </a></li>
-                            <li aria-haspopup="true"><a href="classifieds-map.html">Home style-5</a></li>
-                            <li aria-haspopup="true"><a href="intro-page.html">Home Intro Page</a></li>
-                            <li aria-haspopup="true"><a href="popup-login.html">Home Pop-up login</a></li>
-                            <li aria-haspopup="true"><a href="banner.html">Banners</a></li>
-                        </ul>
-                    </li>
+                    <li aria-haspopup="true"><a  href="{{ route('/') }}">Home</a></li>
+
                     <li aria-haspopup="true"><a href="about.html">About Us </a></li>
-                    <li aria-haspopup="true"><a href="widgets.html">Widgets</a></li>
-                    <li aria-haspopup="true"><a href="#">Pages <span class="fa fa-caret-down m-0"></span></a>
-                        <div class="horizontal-megamenu clearfix">
-                            <div class="container">
-                                <div class="megamenu-content">
-                                    <div class="row">
-                                        <ul class="col link-list">
-                                            <li class="title">Custom pages</li>
-                                            <li>
-                                                <a href="classifieds-list.html">Classifieds List</a>
-                                            </li>
-                                            <li>
-                                                <a href="classifieds-list-right.html">Classifieds List Right</a>
-                                            </li>
-                                            <li>
-                                                <a href="classifieds-list-map.html">Classifieds Map list</a>
-                                            </li>
-                                            <li>
-                                                <a href="classifieds-list-map2.html">Classifieds Map list 02</a>
-                                            </li>
-                                            <li>
-                                                <a href="classifieds-list-map3.html">Classifieds Map style 03</a>
-                                            </li>
-                                            <li>
-                                                <a href="categories.html">Categories</a>
-                                            </li>
-                                            <li>
-                                                <a href="inovice.html">Invoice</a>
-                                            </li>
-                                            <li>
-                                                <a href="usersall.html">User Lists</a>
-                                            </li>
-                                        </ul>
-                                        <ul class="col link-list">
-                                            <li class="title">Custom pages</li>
-                                            <li>
-                                                <a href="ad-list.html">Ad Listing</a>
-                                            </li>
-                                            <li>
-                                                <a href="ad-list-right.html">Ad Listing Right</a>
-                                            </li>
-                                            <li>
-                                                <a href="ad-details.html">Ad Details</a>
-                                            </li>
-                                            <li>
-                                                <a href="ad-details-right.html">Ad Details Right</a>
-                                            </li>
-                                            <li>
-                                                <a href="ad-posts.html">Ad Posts</a>
-                                            </li>
-                                            <li>
-                                                <a href="ad-posts2.html">Ad Posts2</a>
-                                            </li>
-                                            <li>
-                                                <a href="pricing.html">Pricing</a>
-                                            </li>
-                                            <li>
-                                                <a href="typography.html">Typography</a>
-                                            </li>
-                                        </ul>
-                                        <ul class="col link-list">
-                                            <li>
-                                                <a href="userprofile.html"> User Profile</a>
-                                            </li>
-                                            <li>
-                                                <a href="mydash.html">My Dashboard</a>
-                                            </li>
-                                            <li>
-                                                <a href="myads.html">Ads</a>
-                                            </li>
-                                            <li>
-                                                <a href="myfavorite.html">Favorite Ads</a>
-                                            </li>
-                                            <li>
-                                                <a href="manged.html">Manged Ads</a>
-                                            </li>
-                                            <li>
-                                                <a href="payments.html">Payments</a>
-                                            </li>
-                                            <li>
-                                                <a href="orders.html"> Orders</a>
-                                            </li>
-                                            <li>
-                                                <a href="settings.html"> Settings</a>
-                                            </li>
-                                            <li>
-                                                <a href="tips.html">Tips</a>
-                                            </li>
-                                        </ul>
-                                        <ul class="col link-list">
-                                            <li class="title">User pages</li>
-                                            <li><a href="underconstruction.html">Under Constructions</a></li>
-                                            <li><a href="404.html">404</a></li>
-                                            <li><a href="register.html">Register</a></li>
-                                            <li><a href="login.html">Login</a></li>
-                                            <li><a href="login-2.html">Login 02</a></li>
-                                            <li><a href="forgot.html">Forgot Password</a></li>
-                                            <li><a href="lockscreen.html">Lock Screen</a></li>
-                                            <li><a href="faq.html">Faq</a></li>
-                                        </ul>
-                                        <ul class="col link-list">
-                                            <li class="title">User pages</li>
-                                            <li><a href="header-style1.html">Header Style 01</a></li>
-                                            <li><a href="header-style2.html">Header Style 02</a></li>
-                                            <li><a href="header-style3.html">Header Style 03</a></li>
-                                            <li><a href="header-style4.html">Header Style 04</a></li>
-                                            <li><a href="footer-style.html">Footer Style 01</a></li>
-                                            <li><a href="footer-style2.html">Footer Style 02</a></li>
-                                            <li><a href="footer-style3.html">Footer Style 03</a></li>
-                                            <li><a href="footer-style4.html">Footer Style 04</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li aria-haspopup="true"><a href="#"  class="active">Blog <span class="fa fa-caret-down m-0"></span></a>
-                        <ul class="sub-menu">
-                            <li aria-haspopup="true"><a href="#">Blog Grid <i class="fa fa-angle-right float-right mt-1 d-none d-lg-block"></i></a>
-                                <ul class="sub-menu">
-                                    <li aria-haspopup="true"><a href="blog-grid.html">Blog Grid Left</a></li>
-                                    <li aria-haspopup="true"><a href="blog-grid-right.html">Blog Grid Right</a></li>
-                                    <li aria-haspopup="true"><a href="blog-grid-center.html">Blog Grid Center</a></li>
-                                </ul>
-                            </li>
-                            <li aria-haspopup="true"><a href="#">Blog List <i class="fa fa-angle-right float-right mt-1 d-none d-lg-block"></i></a>
-                                <ul class="sub-menu">
-                                    <li aria-haspopup="true"><a href="blog-list.html">Blog List Left</a></li>
-                                    <li aria-haspopup="true"><a href="blog-list-right.html">Blog List Right</a></li>
-                                    <li aria-haspopup="true"><a href="blog-list-center.html">Blog List Center</a></li>
-                                </ul>
-                            </li>
-                            <li aria-haspopup="true"><a href="#">Blog Details <i class="fa fa-angle-right float-right mt-1 d-none d-lg-block"></i></a>
-                                <ul class="sub-menu">
-                                    <li aria-haspopup="true"><a href="blog-details.html">Blog Details Left</a></li>
-                                    <li aria-haspopup="true"><a href="blog-details-right.html">Blog Details Right</a></li>
-                                    <li aria-haspopup="true"><a href="blog-details-center.html">Blog Details Center</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </li>
+
+                    <li aria-haspopup="true"><a href="{{route('show_article')}}" >Blog </a></li>
+
                     <li aria-haspopup="true"><a href="#">Categories <span class="fa fa-caret-down m-0"></span></a>
                         <ul class="sub-menu">
                             <li aria-haspopup="true"><a href="classified.html">Classifieds Left</a></li>
@@ -458,7 +309,7 @@
 </div>
 
 <!--Breadcrumb start-->
- @include('frontend._partial.breadcrumb')
+{{-- @include('frontend._partial.breadcrumb')--}}
 <!--/Breadcrumb end-->
 
 @yield('main_content')
@@ -568,55 +419,55 @@
 <a href="#top" id="back-to-top" ><i class="fa fa-rocket"></i></a>
 
 <!-- JQuery js-->
-<script src="../assets/js/vendors/jquery-3.2.1.min.js"></script>
+<script src="{{ asset('assets') }}/js/vendors/jquery-3.2.1.min.js"></script>
 
 <!-- Bootstrap js -->
-<script src="../assets/plugins/bootstrap-4.3.1-dist/js/popper.min.js"></script>
-<script src="../assets/plugins/bootstrap-4.3.1-dist/js/bootstrap.min.js"></script>
+<script src="{{ asset('assets') }}/plugins/bootstrap-4.3.1-dist/js/popper.min.js"></script>
+<script src="{{ asset('assets') }}/plugins/bootstrap-4.3.1-dist/js/bootstrap.min.js"></script>
 
 <!--JQuery Sparkline Js-->
-<script src="../assets/js/vendors/jquery.sparkline.min.js"></script>
+<script src="{{ asset('assets') }}/js/vendors/jquery.sparkline.min.js"></script>
 
 <!-- Circle Progress Js-->
-<script src="../assets/js/vendors/circle-progress.min.js"></script>
+<script src="{{ asset('assets') }}/js/vendors/circle-progress.min.js"></script>
 
 <!-- Star Rating Js-->
-<script src="../assets/plugins/rating/jquery.rating-stars.js"></script>
+<script src="{{ asset('assets') }}/plugins/rating/jquery.rating-stars.js"></script>
 
 <!--Horizontal Menu-->
-<script src="../assets/plugins/Horizontal2/Horizontal-menu/horizontal.js"></script>
+<script src="{{ asset('assets') }}/plugins/Horizontal2/Horizontal-menu/horizontal.js"></script>
 
 <!--Owl Carousel js -->
-<script src="../assets/plugins/owl-carousel/owl.carousel.js"></script>
+<script src="{{ asset('assets') }}/plugins/owl-carousel/owl.carousel.js"></script>
 
 <!--JQuery TouchSwipe js-->
-<script src="../assets/js/jquery.touchSwipe.min.js"></script>
+<script src="{{ asset('assets') }}/js/jquery.touchSwipe.min.js"></script>
 
 <!--Select2 js -->
-<script src="../assets/plugins/select2/select2.full.min.js"></script>
-<script src="../assets/js/select2.js"></script>
+<script src="{{ asset('assets') }}/plugins/select2/select2.full.min.js"></script>
+<script src="{{ asset('assets') }}/js/select2.js"></script>
 
 <!-- Cookie js -->
-<script src="../assets/plugins/cookie/jquery.ihavecookies.js"></script>
-<script src="../assets/plugins/cookie/cookie.js"></script>
+<script src="{{ asset('assets') }}/plugins/cookie/jquery.ihavecookies.js"></script>
+<script src="{{ asset('assets') }}/plugins/cookie/cookie.js"></script>
 
 <!-- sticky Js-->
-<script src="../assets//js/sticky.js"></script>
+<script src="{{ asset('assets') }}//js/sticky.js"></script>
 
 <!-- Custom scroll bar Js-->
-<script src="../assets/plugins/scroll-bar/jquery.mCustomScrollbar.concat.min.js"></script>
+<script src="{{ asset('assets') }}/plugins/scroll-bar/jquery.mCustomScrollbar.concat.min.js"></script>
 
 <!-- Vertical scroll bar Js-->
-<script src="../assets/plugins/vertical-scroll/jquery.bootstrap.newsbox.js"></script>
-<script src="../assets/plugins/vertical-scroll/vertical-scroll.js"></script>
+<script src="{{ asset('assets') }}/plugins/vertical-scroll/jquery.bootstrap.newsbox.js"></script>
+<script src="{{ asset('assets') }}/plugins/vertical-scroll/vertical-scroll.js"></script>
 
 <!-- Swipe Js-->
-<script src="../assets/js/swipe.js"></script>
+<script src="{{ asset('assets') }}/js/swipe.js"></script>
 
 <!-- Scripts Js-->
-<script src="../assets/js/scripts2.js"></script>
+<script src="{{ asset('assets') }}/js/scripts2.js"></script>
 
 <!-- Custom Js-->
-<script src="../assets/js/custom.js"></script>
+<script src="{{ asset('assets') }}/js/custom.js"></script>
 </body>
 </html>
