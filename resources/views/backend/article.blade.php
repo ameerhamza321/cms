@@ -5,16 +5,6 @@
 
     <div class="row">
         <div class="col-md-12 col-lg-12">
-            <!---Add article Button--->
-{{--            <div class="btn-list text-right">--}}
-{{--                <button type="button" name="create_record" class="btn btn-info" id="create_record"--}}
-{{--                        data-toggle="modal" style="margin-left:880px;"><i class="fe fe-plus mr-2"></i>Add--}}
-{{--                </button>--}}
-{{--                <a class="icon" href="#"></a>--}}
-{{--                <a href="#" style="margin-right: 30px" name="create_record" id="create_record" class="btn btn-info btn-md"><i class="fa fa-plus-square mr-2"></i>ADD </a>--}}
-{{--            </div>--}}
-        <!---End Button--->
-
             <div class="card">
                 <div class="card-header bg-primary text-white">
                     <div class="card-title">Article</div>
@@ -91,6 +81,7 @@
     </div>
 
 
+
     <!-- Modal -->
     <div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -111,6 +102,7 @@
             </div>
         </div>
     </div>
+
 
 
 
@@ -141,12 +133,13 @@
                         searchable: false,
                         orderable: false,
                         render: function (data, type, row) {
+                                return data;
 
-                            return data;
                         }
                     }
                 ]
             });
+
 
             //..... add article event.
             $('#create_record').click(function () {
@@ -184,93 +177,86 @@
                             $('#form_result').html(html);
                         }
                     })
-                }
 
-                {{-- if($('#action').val() == "Edit")--}}
-                {{--{--}}
-                {{--    $.ajax({--}}
-                {{--        url:"{{ route('article.update') }}",--}}
-                {{--        method:"POST",--}}
-                {{--        data:new FormData(this),--}}
-                {{--        contentType: false,--}}
-                {{--        cache: false,--}}
-                {{--        processData: false,--}}
-                {{--        dataType:"json",--}}
-                {{--        success:function(data)--}}
-                {{--        {--}}
-                {{--            var html = '';--}}
-                {{--            if(data.errors)--}}
-                {{--            {--}}
-                {{--                html = '<div class="alert alert-danger">';--}}
-                {{--                for(var count = 0; count < data.errors.length; count++)--}}
-                {{--                {--}}
-                {{--                    html += '<p>' + data.errors[count] + '</p>';--}}
-                {{--                }--}}
-                {{--                html += '</div>';--}}
-                {{--            }--}}
-                {{--            if(data.success)--}}
-                {{--            {--}}
-                {{--                html = '<div class="alert alert-success">' + data.success + '</div>';--}}
-                {{--                $('#sample_form')[0].reset();--}}
-                {{--                $('#store_image').html('');--}}
-                {{--                $('#user_table').DataTable().ajax.reload();--}}
-                {{--            }--}}
-                {{--            $('#form_result').html(html);--}}
-                {{--        }--}}
-                {{--    });--}}
-                {{--    setTimeout(function(){--}}
-                {{--        $('#formModal').modal('hide');--}}
-                {{--        $('#articleDataTables').DataTable().ajax.reload();--}}
-                {{--    }, 2000);--}}
-                {{--}--}}
+                if ($('#action').val() == "Edit") {
+                    $.ajax({
+                        url: "{{ route('article.update') }}",
+                        method: "POST",
+                        data: new FormData(this),
+                        contentType: false,
+                        cache: false,
+                        processData: false,
+                        dataType: "json",
+                        success: function (data) {
+                            var html = '';
+                            if (data.errors) {
+                                html = '<div class="alert alert-danger">';
+                                for (var count = 0; count < data.errors.length; count++) {
+                                    html += '<p>' + data.errors[count] + '</p>';
+                                }
+                                html += '</div>';
+                            }
+                            if (data.success) {
+                                html = '<div class="alert alert-success">' + data.success + '</div>';
+                                $('#sample_form')[0].reset();
+                                $('#store_image').html('');
+                                $('#user_table').DataTable().ajax.reload();
+                            }
+                            $('#form_result').html(html);
+                        }
+                    });
+                    setTimeout(function () {
+                        $('#formModal').modal('hide');
+                        $('#articleDataTables').DataTable().ajax.reload();
+                    }, 2000);
+                }
             });
 
-                {{--$(document).on('click', '.editRecord', function(){--}}
-                {{--    var id = $(this).attr('id');--}}
-                {{--    $('#form_result').html('');--}}
-                {{--    $.ajax({--}}
-                {{--        url:"/article/"+id+"/edit",--}}
-                {{--        dataType:"json",--}}
-                {{--        success:function(html){--}}
+            $(document).on('click', '.editRecord', function () {
+                var id = $(this).attr('id');
+                $('#form_result').html('');
+                $.ajax({
+                    url: "/article/" + id + "/edit",
+                    dataType: "json",
+                    success: function (html) {
+                        $('#title').val(html.data.title);
+                        $('#description').val(html.data.description);
+                        $('#store_image').html("<img src={{ URL::to('/') }}/images/" + html.data.image + " width='100' class='img-thumbnail' />");
+                        $('#store_image').append("<input type='hidden' name='hidden_image' value='" + html.data.image + "' />");
+                        $('#hidden_id').val(html.data.id);
+                        $('.modal-title').text("Edit New Record");
+                        $('#action_button').val("Edit");
+                        $('#action').val("Edit");
+                        $('#formModal').modal('show');
 
-                {{--            $('#title').val(html.data.title);--}}
-                {{--            $('#description').val(html.data.description);--}}
-                {{--            $('#store_image').html("<img src={{ URL::to('/') }}/images/" + html.data.image + " width='100' class='img-thumbnail' />");--}}
-                {{--            $('#store_image').append("<input type='hidden' name='hidden_image' value='"+html.data.image+"' />");--}}
-                {{--            $('#hidden_id').val(html.data.id);--}}
-                {{--            $('.modal-title').text("Edit New Record");--}}
-                {{--            $('#action_button').val("Edit");--}}
-                {{--            $('#action').val("Edit");--}}
-                {{--            $('#formModal').modal('show');--}}
+                    }
+                })
+            });
 
-                {{--        }--}}
-                {{--    })--}}
-                {{--});--}}
+            var user_id;
 
-            // var user_id;
-            //
-            // $(document).on('click', '.deleteRecord', function(){
-            //     user_id = $(this).attr('id');
-            //     $('#confirmModal').modal('show');
-            // });
-            //
-            // $('#ok_button').click(function(){
-            //     $.ajax({
-            //         url:"article/destroy/"+user_id,
-            //         beforeSend:function(){
-            //             $('#ok_button').text('Deleting...');
-            //         },
-            //         success:function(data)
-            //         {
-            //             setTimeout(function(){
-            //                 $('#confirmModal').modal('hide');
-            //                 $('#articleDataTables').DataTable().ajax.reload();
-            //             }, 1000);
-            //         }
-            //     })
-            // });
+            $(document).on('click', '.deleteRecord', function () {
+                user_id = $(this).attr('id');
+                $('#confirmModal').modal('show');
+            });
 
-        });//.... end ready() .....//
+            $('#ok_button').click(function () {
+                $.ajax({
+                    url: "article/destroy/" + user_id,
+                    beforeSend: function () {
+                        $('#ok_button').text('Deleting...');
+                    },
+                    success: function (data) {
+                        setTimeout(function () {
+                            $('#confirmModal').modal('hide');
+                            $('#articleDataTables').DataTable().ajax.reload();
+                        }, 2000);
+                    }
+                })
+            });
+
+
+        });
 
     </script>
 

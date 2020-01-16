@@ -4,16 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Role;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
-use Yajra\DataTables\DataTables;
+use DataTables;
+use Validator;
 
 class RoleController extends Controller
 {
-
-    public function __construct(){
-        $this->middleware('auth');
-    }
-
     /**
      * Display a listing of the resource.
      *
@@ -21,22 +16,20 @@ class RoleController extends Controller
      */
     public function index(Request $request)
     {
-        /*$page =Role::cursor(2);*/
+        if($request->ajax())
+        {
+            $data = Role::query();
+            return DataTables::of($data)
 
-        /* return DataTable::of($page)->make(true);*/
+                ->addColumn('action', function($data){
+                    $button = '<button type="icon" name="edit" id="'.$data->id.'" class="edit btn btn-primary btn-sm" <i class="fa fa-pencil"></i>Edit</button>';
+                    $button .= '&nbsp;&nbsp;&nbsp;<button type="button" name="edit" id="'.$data->id.'" class="delete btn btn-danger btn-sm">Delete</button>';
+                    return $button;
+                })
+                ->rawColumns(['action'])
+                ->make(true);
+        }
         return view('backend.add_role');
-    }
-
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-
-    function getdata(Request $request)
-    {
-        $page =Role::all();
-        return DataTables::of($page)->make(true);
     }
 
     /**
@@ -44,59 +37,6 @@ class RoleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-
-    function postdata(Request $request)
-    {
-        $validation = Validator::make($request->all(), [
-            'name' => 'required',
-
-        ]);
-
-        $error_array = array();
-        $success_output = '';
-        if ($validation->fails())
-        {
-            foreach($validation->messages()->getMessages() as $field_name => $messages)
-            {
-                $error_array[] = $messages;
-            }
-        }
-        else
-        {
-            if($request->get('button_action') == "insert")
-            {
-                $pages = new Role([
-                    'name'    =>  $request->get('name'),
-
-                ]);
-                $pages->save();
-                $success_output = '<div class="alert alert-success">Data Inserted</div>';
-            }
-        }
-        $output = array(
-            'error'     =>  $error_array,
-            'success'   =>  $success_output
-        );
-        echo json_encode($output);
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     public function create()
     {
         //
@@ -110,16 +50,35 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $rules = array(
+            'name'    =>  'required'
+        );
+
+        $error = Validator::make($request->all(), $rules);
+
+        if($error->fails())
+        {
+            return response()->json(['errors' => $error->errors()->all()]);
+        }
+
+        $form_data = array(
+            'name'        =>  $request->name
+
+        );
+
+        Role::create($form_data);
+
+        return response()->json(['success' => 'Data Added successfully.']);
+
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Pages_mgt  $pages_mgt
+     * @param  \App\Sample_data  $sample_data
      * @return \Illuminate\Http\Response
      */
-    public function show(Pages_mgt $pages_mgt)
+    public function show(Role $role)
     {
         //
     }
@@ -127,34 +86,59 @@ class RoleController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Pages_mgt  $pages_mgt
+     * @param  \App\Sample_data  $sample_data
      * @return \Illuminate\Http\Response
      */
-    public function edit(Pages_mgt $pages_mgt)
+    public function edit($id)
     {
-        //
+        if(request()->ajax())
+        {
+            $data = Role::findOrFail($id);
+            return response()->json(['result' => $data]);
+        }
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Pages_mgt  $pages_mgt
+     * @param  \App\Sample_data  $sample_data
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Pages_mgt $pages_mgt)
+    public function update(Request $request, Role $role)
     {
-        //
+        $rules = array(
+            'name'        =>  'required'
+
+        );
+
+        $error = Validator::make($request->all(), $rules);
+
+        if($error->fails())
+        {
+            return response()->json(['errors' => $error->errors()->all()]);
+        }
+
+        $form_data = array(
+            'name'    =>  $request->name
+
+        );
+
+        Role::whereId($request->hidden_id)->update($form_data);
+
+        return response()->json(['success' => 'Data is successfully updated']);
+
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Pages_mgt  $pages_mgt
+     * @param  \App\Sample_data  $sample_data
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Pages_mgt $pages_mgt)
+    public function destroy($id)
     {
-        //
+        $data = Role::findOrFail($id);
+        $data->delete();
     }
 }
