@@ -5,22 +5,17 @@ use App\Pages_mgt;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
-use Yajra\DataTables\Facades\DataTables;
+use Yajra\DataTables\Contracts\DataTable;
 
 class PagesMgtController extends Controller
 {
-
-    public function __construct(){
-        $this->middleware('auth');
-    }
-
 
     public function index(Request $request)
     {
 
 
-       /* return DataTable::of($page)->make(true);*/
-       return view('backend.add_page');
+        /* return DataTable::of($page)->make(true);*/
+        return view('backend.add_page');
     }
 
     /**
@@ -31,8 +26,10 @@ class PagesMgtController extends Controller
 
     function getdata(Pages_mgt $pages_mgt)
     {
-        $page =Pages_mgt::all();
-        return DataTables::of($page)->make(true);
+        $page =Pages_mgt::query();
+        return DataTable::of($page)->addColumn('shortDescription', function($page) {
+            return strip_tags(Str::words($page->description, 20));
+        })->make(true);
     }
 
     /**
@@ -103,6 +100,22 @@ class PagesMgtController extends Controller
 
 
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     public function create()
