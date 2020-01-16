@@ -29,6 +29,8 @@
         </div>
     </div>
 
+
+
     <!-- Message Modal -->
     <div class="modal fade" id="formModal" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -80,9 +82,36 @@
 
 
 
+    <!-- Modal -->
+    <div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Confirmation</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Are you sure you want to remove this data?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" name="ok_button" id="ok_button" class="btn btn-danger">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
 
 
     <script>
+        $('#description').summernote({
+            height: 250
+        });
+
         var BaseUrl = '{{ url('/') }}';
         $(document).ready(function () {
             var table = $('#articleDataTables').DataTable({
@@ -104,15 +133,8 @@
                         searchable: false,
                         orderable: false,
                         render: function (data, type, row) {
+                                return data;
 
-                            return '<td class="text-right">\n' +
-                                '\t\t\t\t\t\t\t\t\t\t\t\t\t\t<a class="icon" href="#"></a>\n' +
-                                '\t\t\t\t\t\t\t\t\t\t\t\t\t\t<a href="#" id="' + row.id + '" class="btn btn-primary btn-sm editRecord"><i class="fa fa-pencil"></i> </a>\n' +
-                                '\n' +
-                                '\n' +
-                                '\t\t\t\t\t\t\t\t\t\t\t\t\t\t<a class="icon deleteRecord" href="#"></a>\n' +
-                                '\t\t\t\t\t\t\t\t\t\t\t\t\t\t<a href="#" id="' + row.id + '" class="btn btn-danger btn-sm deleteRecord"><i class="fa fa-trash"></i> </a>\n' +
-                                '\t\t\t\t\t\t\t\t\t\t\t\t\t</td>';
                         }
                     }
                 ]
@@ -155,7 +177,6 @@
                             $('#form_result').html(html);
                         }
                     })
-                }
 
                 if ($('#action').val() == "Edit") {
                     $.ajax({
@@ -234,7 +255,8 @@
                 })
             });
 
-        });//.... end ready() .....//
+
+        });
 
     </script>
 

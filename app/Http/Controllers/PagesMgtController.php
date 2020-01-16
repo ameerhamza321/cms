@@ -10,12 +10,12 @@ use Yajra\DataTables\Contracts\DataTable;
 class PagesMgtController extends Controller
 {
 
-    public function index(Request $request)
+    public function index()
     {
 
-
+        $pages= Pages_mgt::all();
         /* return DataTable::of($page)->make(true);*/
-        return view('backend.add_page');
+        return view('backend.add_page')->with('pages' , $pages);
     }
 
     /**

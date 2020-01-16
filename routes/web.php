@@ -25,12 +25,11 @@ Route::get('/home', 'HomeController@index')->name('home');
 //Article Route
 Route::get('/article', 'ArticleController@index')->name('article');
 Route::get('articles-list', [\App\Http\Controllers\ArticleController::class, 'getArticlesList'])->name('articles.list');
-//Route::get('delete-article', [\App\Http\Controllers\ArticleController::class, 'deleteArticle'])->name('delete.article');
 Route::get('article/add_article', 'ArticleController@add_article')->name('article.add_article');
 Route::get('article/{id}/edit', 'ArticleController@edit')->name('article.edit');
 Route::post('article/store', 'ArticleController@store')->name('article.store');
 Route::post('article/update', 'ArticleController@update')->name('article.update');
-Route::get('article/destroy/{id}', 'ArticleController@destroy');
+Route::get('article/destroy/{id}', 'ArticleController@destroy')->name('article.delete');
 
 
 //pages list
@@ -76,3 +75,10 @@ Route::get('Users/edit', 'UsersController@edit')->name('User.edit');
 Route::get('Users/destroy', 'UsersController@destroy')->name('User.destroy');
 Route::put('Users/update/', 'UsersController@update')->name('User.update');
 
+//frontend view
+Route::get('/', 'frontend\FrontController@index')->name('/');
+
+
+//show articles
+Route::get('/blog', 'frontend\ShowArticleController@index')->name('show_article');
+Route::get('/blog/{articles}', 'frontend\ShowArticleController@show')->name('view_article');

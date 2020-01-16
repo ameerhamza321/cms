@@ -16,7 +16,7 @@
                     @method('POST')
                     <span id="form_output"></span>
 
-                    <div class="form-group">
+                    <div class="form-group" >
                         <label class="form-label">Title</label>
                         <input type="text" name="title" id="title" class="form-control" placeholder="Enter Title">
                     </div>
@@ -53,17 +53,8 @@
             height: 250
         });
 
+
         $(document).ready(function () {
-            $('#articleDataTables').DataTable({
-                "processing": true,
-                "serverSide": true,
-                "ajax": "{{ route('article.add_article') }}",
-                "columns": [
-                    {"data": "title"},
-                    {"data": "description"},
-                    {"data": "image"}
-                ]
-            });
             $('#pages_form')[0].reset();
             $('#form_output').html('');
             $('#button_action').val('insert');
@@ -73,10 +64,10 @@
         $('#pages_form').on('submit', function (event) {
             event.preventDefault();
             $.ajax({
-                url:"{{ route('article.store') }}",
-                method:"POST",
-                data:new FormData($("#pages_form")[0]),
-                dataType:'JSON',
+                url: "{{ route('article.store') }}",
+                method: "POST",
+                data: new FormData($("#pages_form")[0]),
+                dataType: 'JSON',
                 contentType: false,
                 cache: false,
                 processData: false,
@@ -93,13 +84,12 @@
                         $('#action').val('Save');
                         $('#button_action').val('insert');
 
-                        $('#articleDataTables').DataTable().ajax.reload();
+                        $('#articleDataTables').DataTable().ajax.reload(true);
                     }
+
                 }
             })
         });
-
-
 
 
     </script>

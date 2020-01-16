@@ -52,6 +52,11 @@
     <!---Font icons-->
     <link href="{{ asset('assets') }}/plugins/iconfonts/plugin.css" rel="stylesheet" />
     <link href="{{ asset('assets') }}/plugins/iconfonts/icons.css" rel="stylesheet" />
+
+
+    <link href="../assets/plugins/sweet-alert/sweetalert.css" rel="stylesheet" />
+
+
     <!-- Data table css -->
         <link href="{{ asset('assets') }}/plugins/datatable/dataTables.bootstrap4.min.css" rel="stylesheet" />
         <link href="{{ asset('assets') }}/plugins/datatable/jquery.dataTables.min.css" rel="stylesheet" />

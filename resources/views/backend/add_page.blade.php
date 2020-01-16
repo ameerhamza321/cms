@@ -11,6 +11,7 @@
 
 
             <div class="card-body">
+
                 <form method="post" action="{{route('Pagesmgt.postdata')}}" id="pages_form">
                     @method('POST')
                     @csrf
@@ -19,31 +20,49 @@
                     <div class="form-group">
                         <label class="form-label">Page Ttile</label>
                         <input type="text" name="title" id="title" class="form-control"  placeholder="Enter Page Title">
+
                     </div>
 
                     <div class="form-group">
                         <label class="form-label">Page Slug</label>
+
                         <input type="text" name="slug" id="slug" class="form-control"  placeholder="Enter Page Slug">
+
                     </div>
 
                     <div class="form-group">
                         <label class="form-label">Page Heading</label>
+
                         <input type="text" name="heading" id="heading" class="form-control"  placeholder="Enter Page Heading">
+
+
+
                     </div>
 
                     <div class="form-group">
                         <label class="form-label">Meta Title</label>
+
                         <input type="text" name="meta_title" id="meta_title" class="form-control"  placeholder="Enter Meta Title">
+
+               ">
                     </div>
 
                     <div class="form-group">
                         <label class="form-label">Meta Keywords</label>
+
                         <input type="text" class="form-control" name="meta_keywords" id="meta_keywords" placeholder="Enter Meta Keywords">
+
+
+
                     </div>
 
                     <div class="form-group">
                         <label class="form-label">Meta Description</label>
+
                         <input type="text" class="form-control" name="meta_description" id="meta_description" placeholder="Enter Meta Description">
+
+
+
                     </div>
 
 
@@ -55,10 +74,12 @@
 
 
 
+
                     <div class="form-group mb-0">
                         <div class="checkbox checkbox-secondary">
                             <input type="hidden" name="button_action" id="button_action" value="insert" />
                             <input type="submit" name="submit" id="action" value="Add New Page" class="btn btn-primary waves-effect waves-light" />
+
                         </div>
                     </div>
                 </form>
@@ -70,20 +91,16 @@
 
 
 
-
-
-
-
-
-
     <script>
         $('#description').summernote({
             height: 250
         });
 
+
         $('#description').on('submit', function(files, editor, welEditable){
             sendFile(files[0], editor, welEditable);
             function sendFile(file, editor, welEditable,event) {
+
                 event.preventDefault();
                 var form_data = $(this).serialize();
                 data.append("file", file);
@@ -91,11 +108,13 @@
                     $.ajax({
                         data: data,
                         type: "POST",
+
                         url: "{{ route('Pagesmgt.postdata') }}",
                         cache: false,
                         contentType: false,
                         processData: false,
                         success: function(url) {
+
                             alert('Success');
                             editor.insertImage(welEditable, url);
                         }
@@ -106,13 +125,16 @@
 
 
 
+
+
             $(document).ready(function() {
+
 
 
                 $('#pages_form')[0].reset();
                 $('#form_output').html('');
                 $('#button_action').val('insert');
-                $('#action').val('Add New Page');
+
             });
 
             $('#pages_form').on('submit', function(event){
@@ -131,9 +153,11 @@
                             for(var count = 0; count < data.error.length; count++)
                             {
                                 error_html += '<div class="alert alert-danger">'+data.error[count]+'</div>';
+
+
                             }
-                            $('#form_output').html(error_html);
                         }
+
                         else
                         {
                             $('#form_output').html(data.success);
@@ -145,7 +169,13 @@
                     }
                 })
             });
-        });
+
+                    })
+                });
+
+
+
+
 
 
     </script>
