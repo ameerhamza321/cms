@@ -24,8 +24,6 @@ class Userscontroller extends Controller
     {
         $users = User::all();
         return view('backend.user_mgt')->with('users',$users);
-
-
     }
 
 
@@ -35,11 +33,11 @@ class Userscontroller extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(User $user)
+    public function edit(User $User)
     {
         $roles = Role::all();
         return view('backend.role_assign')->with([
-            'users' => $user,
+            'user' => $User,
             'roles' => $roles
         ]);
 
@@ -52,14 +50,14 @@ class Userscontroller extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
-
+    public function update(Request $request, User $User)
     {
-        $user = User::first();
+        dd($request);
+        //$user = User::first();
 
-        $user->roles()->sync([1,2,3]);
+        $User->roles()->sync($request->roles);
 
-        dd($user->roles);
+        dd($request->roles);
         return redirect()->route('Users.index');
     }
 

@@ -12,12 +12,15 @@
 */
 
 
+//frontend view
+Route::get('/', 'frontend\FrontController@index')->name('/');
 
-Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
-//Route::get('/', function () {
-//    return view('backend.dashboard');
+//Route::get('/login2', function () {
+//    return view('auth.login2');
 //});
+
 Auth::routes();
+
 Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
 Route::get('/home', 'HomeController@index')->name('home');
 
@@ -28,7 +31,7 @@ Route::get('articles-list', [\App\Http\Controllers\ArticleController::class, 'ge
 Route::get('article/add_article', 'ArticleController@add_article')->name('article.add_article');
 Route::get('article/{id}/edit', 'ArticleController@edit')->name('article.edit');
 Route::post('article/store', 'ArticleController@store')->name('article.store');
-Route::post('article/update', 'ArticleController@update')->name('article.update');
+Route::put('article/update/{id}', 'ArticleController@update')->name('article.update');
 Route::get('article/destroy/{id}', 'ArticleController@destroy')->name('article.delete');
 
 //pages list
@@ -56,13 +59,11 @@ Route::put('update/{id}', 'SliderController@update');
 Route::post('slider/store', 'SliderController@store')->name('slider.store');
 
 //user routes
-Route::get('Users', 'UsersController@index')->name('Users.index');
-Route::get('Users/edit', 'UsersController@edit')->name('User.edit');
-Route::get('Users/destroy', 'UsersController@destroy')->name('User.destroy');
-Route::put('Users/update/', 'UsersController@update')->name('User.update');
 
-//frontend view
-Route::get('/', 'frontend\FrontController@index')->name('/');
+Route::resource('Users' , 'UsersController');
+Route::get('Users/{User}/edit', 'UsersController@edit')->name('User.edit');
+Route::put('Users/{User}', 'UsersController@update')->name('User.update');
+Route::get('Users/{User}', 'UsersController@destroy')->name('User.destroy');
 
 
 //show articles
