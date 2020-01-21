@@ -6,19 +6,21 @@
     <div class="col-xl-15">
         <div class="card m-b-60">
             <div class="card-header bg-primary text-white">
-                <h1 class="card-title ">Add New Page</h1>
+                <h1 class="card-title ">Update Page</h1>
+                <i class="fa fa-check-circle-o mr-2" aria-hidden="true"></i> {{session('successMsg')}}
+
             </div>
 
 
             <div class="card-body">
-                <form method="post" action="/update/{{ $pages->id }}"  id="pages_form">
-                    @method('POST')
+                <form method="post" action="{{ route('Pages.list.update',$pages) }}"  id="pages_form">
+                    @method('PUT')
                     @csrf
                     <span id="form_output"></span>
                     <input type="hidden" name="id" id="id" value="{{ $pages->id }}">
 
                     <div class="form-group">
-                        <label class="form-label">Page Ttile</label>
+                        <label class="form-label">Page Title</label>
                         <input type="text" name="title" id="title" class="form-control" value="{{ $pages->title }}"  placeholder="Enter Page Title">
                     </div>
 
@@ -57,9 +59,11 @@
 
 
                     <div class="form-group mb-0">
+
                         <div class="checkbox checkbox-secondary">
                             <input type="hidden" name="button_action" id="button_action" value="insert" />
-                            <input type="submit" name="submit" id="action" value="Add New Page" class="btn btn-primary waves-effect waves-light" />
+                            <input type="submit" name="submit" id="action" value="Update Page" class="btn btn-primary waves-effect waves-light" />
+                            <a href="{{ route('Pages_list.index') }}" class="btn btn-danger">Back</a>
                         </div>
                     </div>
                 </form>
@@ -74,7 +78,16 @@
         height: 250
     });
 
+    $('#title').on('keyup', function () {
+        var theTitle = this.value.toLowerCase().trim();
+        slugInput = $('#slug'),
+            theSlug = theTitle.replace(/&/g, '-and-')
+                .replace(/[^a-z0-9-]+/g, '-')
+                .replace(/\-\+/g, '-')
+                .replace(/^-+|-+&/g, '-')
+        slugInput.val(theSlug);
 
+    });
 </script>
 
 

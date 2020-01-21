@@ -3,11 +3,18 @@
 @section('main_content')
 
     <div class="container">
+        @if(session('successMsg'))
+            <div class="alert alert-success" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                <i class="fa fa-check-circle-o mr-2" aria-hidden="true"></i> {{session('successMsg')}}
+            </div>
+        @endif
         <div align="right">
 
-            <a href="{{route('Pagesmgt.index')}}" class="btn btn-primary waves-effect waves-light btn-md" >Add New Page</a>
+            <a href="{{route('Pagesmgt.index')}}" class="btn btn-primary waves-effect waves-light btn-md">Add New
+                Page</a>
         </div>
-        <br />
+        <br/>
 
 
         <table id="pages_table" class="table table-bordered" style="width:100%">
@@ -50,97 +57,92 @@
                                class="btn btn-primary btn-sm"><i class="fa fa-pencil"></i> </a>
 
                             <a class="icon deleteRecord" href="#"></a>
-                            <a href="{{route('pages_list.delete',$page->id )}}"
-                               class="btn btn-danger btn-sm deleteRecord"><i class="fa fa-trash"></i> </a>
+                            <a href="#"
+                               class="delete btn btn-danger btn-sm deleteRecord"><i class="fa fa-trash"></i> </a>
                         </td>
-
-
-
-
                     </tr>
             </div>
             @endforeach
-
             </tbody>
-
-
-
         </table>
+    </div>
 
+
+    </tr>
+    </thead>
+    </table>
     </div>
 
 
-            </tr>
-            </thead>
-        </table>
+    <div id="confirmModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-primary text-white">
+                    <h3 class="modal-title" align="center">Confirmation</h3>
+
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <h4 align="center" style="margin:0;">Are you sure you want to remove this data?</h4>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" name="ok_button" id="ok_button"
+                            class="btn btn-primary waves-effect waves-light">Delete
+                    </button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </div>
     </div>
+
 
     <script type="text/javascript">
 
 
+        $(document).ready(function () {
 
-            if($('#action').val() == "Edit")
-            {
-                $.ajax({
-                    url:"{{ route('article.update') }}",
-                    method:"POST",
-                    data:new FormData(this),
-                    contentType: false,
-                    cache: false,
-                    processData: false,
-                    dataType:"json",
-                    success:function(data)
+            $('#user_table').DataTable({
+                processing: true,
+                serverSide: true,
+                ajax: {
+                    url: "{{ route('Pages_list.index') }}", "type": "GET", "dataType": "JSON"
+
+                },
+                columns: [
                     {
-                        var html = '';
-                        if(data.errors)
-                        {
-                            html = '<div class="alert alert-danger">';
-                            for(var count = 0; count < data.errors.length; count++)
-                            {
-                                html += '<p>' + data.errors[count] + '</p>';
-                            }
-                            html += '</div>';
-                        }
-                        if(data.success)
-                        {
-                            html = '<div class="alert alert-success">' + data.success + '</div>';
-                            $('#sample_form')[0].reset();
-                            $('#store_image').html('');
-                            $('#user_table').DataTable().ajax.reload();
-                        }
-                        $('#form_result').html(html);
+                        data: 'name',
+                        name: 'name'
+                    },
+                    {
+                        data: 'action',
+                        name: 'action',
+                        orderable: false
                     }
-                });
-                setTimeout(function(){
-                    $('#formModal').modal('hide');
-                    $('#articleDataTables').DataTable().ajax.reload();
-                }, 2000);
-            }
-        });
+                ]
+            });
 
-        $(document).on('click', '.editRecord', function(){
-            var id = $(this).attr('id');
-            $('#form_result').html('');
-            $.ajax({
-                url:"/article/"+id+"/edit",
-                dataType:"json",
-                success:function(html){
-                    $('#title').val(html.data.title);
-                    $('#description').val(html.data.description);
-                    $('#store_image').html("<img src={{ URL::to('/') }}/images/" + html.data.image + " width='100' class='img-thumbnail' />");
-                    $('#store_image').append("<input type='hidden' name='hidden_image' value='"+html.data.image+"' />");
-                    $('#hidden_id').val(html.data.id);
-                    $('.modal-title').text("Edit New Record");
-                    $('#action_button').val("Edit");
-                    $('#action').val("Edit");
-                    $('#formModal').modal('show');
+            var user_id;
 
-                }
-            })
-        });
+            $(document).on('click', '.delete', function () {
+                user_id = $(this).attr('id');
+                $('#confirmModal').modal('show');
+            });
 
-        });
-}
+            $('#ok_button').click(function () {
+                $.ajax({
+                    url: "Pages_list/destroy/" + user_id,
+                    beforeSend: function () {
+                        $('#ok_button');
+                    },
+                    success: function (data) {
+                        setTimeout(function () {
+                            $('#confirmModal').modal('hide');
+                            $('#user_table').DataTable().ajax.reload();
+
+                        }, 100);
+                    }
+                })
+            });
 
 
     </script>

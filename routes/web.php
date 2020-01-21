@@ -24,7 +24,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 //Article Route
 Route::get('/article', 'ArticleController@index')->name('article');
-Route::get('articles-list', [\App\Http\Controllers\ArticleController::class, 'getArticlesList'])->name('articles.list');
+Route::get('articles-list', 'ArticleController@getArticlesList')->name('articles.list');
 Route::get('article/add_article', 'ArticleController@add_article')->name('article.add_article');
 Route::get('article/{id}/edit', 'ArticleController@edit')->name('article.edit');
 Route::post('article/store', 'ArticleController@store')->name('article.store');
@@ -35,7 +35,7 @@ Route::get('article/destroy/{id}', 'ArticleController@destroy')->name('article.d
 //pages list
 Route::get('Pages_list', 'Pages_listController@index')->name('Pages_list.index');
 Route::get('Pages_list/{id}/edit', 'Pages_listController@edit')->name('Pages_list.edit');
-Route::post('pages_list/update', 'pages_listController@update')->name('pages_list.update');
+Route::put('Pages_list/update/{id}', 'Pages_listcontroller@update')->name('Pages.list.update');
 Route::get('Pages_list/destroy/{id}', 'pages_listController@destroy')->name('pages_list.delete');
 
 
@@ -46,15 +46,6 @@ Route::get('Pages_list/destroy/{id}', 'pages_listController@destroy')->name('pag
 Route::get('Pagesmgt', 'PagesmgtController@index')->name('Pagesmgt.index');
 Route::get('Pagesmgt/getdata', 'PagesmgtController@getdata')->name('Pagesmgt.getdata');
 Route::post('Pagesmgt/postdata', 'PagesmgtController@postdata')->name('Pagesmgt.postdata');
-
-
-
-
-//Pages
-Route::resource('Pages', 'PagesController');
-Route::post('Pages/update', 'PagesController@update')->name('Pages.update');
-Route::get('Pages/destroy/{id}', 'PagesController@destroy');
-
 
 
 //role routes
