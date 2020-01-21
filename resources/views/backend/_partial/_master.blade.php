@@ -282,7 +282,10 @@
             <div class="app-sidebar__user clearfix">
                 <div class="dropdown user-pro-body">
                     <div>
+
+
                         <img src="{{ asset('assets') }}/images/faces/male/admin.jpg" alt="user-img" class="avatar avatar-lg brround">
+
                         <a href="editprofile.html" class="profile-img">
                             <span class="fa fa-pencil" aria-hidden="true"></span>
                         </a>
@@ -317,11 +320,24 @@
                         </li>
                     </ul>
                 </li>
-
                 <li class="slide">
 
                     <a class="side-menu__item" data-toggle="slide" href="#"><i
-                            class="side-menu__icon fa fa-user-plus"></i><span
+                            class="side-menu__icon fa fa-file"></i><span class="side-menu__label">Pages Management</span><i
+                            class="angle fa fa-angle-right"></i></a>
+                    <ul class="slide-menu">
+                        <li>
+                            <a href="{{route('Pagesmgt.index')}}" class="slide-item">Add New Page</a>
+                        </li>
+                        <li>
+                            <a href="{{route('Pages_list.index')}}" class="slide-item">Pages List</a>
+
+
+</li></ul>
+                </li>
+                <li class="slide">
+                    <a class="side-menu__item" data-toggle="slide" href="#"><i
+                            class="side-menu__icon fa fa-th-large"></i><span
                             class="side-menu__label">User Management</span><i class="angle fa fa-angle-right"></i></a>
                     <ul class="slide-menu">
                         <li>
@@ -333,22 +349,8 @@
                     </ul>
                 </li>
 
-                <li class="slide">
-                    <a class="side-menu__item" data-toggle="slide" href="#"><i
-                            class="side-menu__icon fa fa-database"></i><span class="side-menu__label">Pages</span><i
-                            class="angle fa fa-angle-right"></i></a>
-                    <ul class="slide-menu">
 
-                        <a href="{{route('PagesMgt.index')}}" class="slide-item">Add New Page</a>
-                        </li>
-                        <li>
-                            <a href="{{route('Pages_list.index')}}" class="slide-item">Pages List</a>
-                        </li
-                        >
 
-                    </ul>
-                </li>
-                <li class="slide">
 
                     <a class="side-menu__item" href="{{route('Role.index')}}"><i
                             class="side-menu__icon fa fa-user"></i><span class="side-menu__label">Roll</span></a>
@@ -368,6 +370,7 @@
                     </ul>
                 </li>
             </ul>
+
 
 
             <div class="app-sidebar-footer">
@@ -462,12 +465,14 @@
 <!-- Custom Js-->
 <script src="{{ asset('assets') }}/js/admin-custom.js"></script>
 
+
 <!-- Sweet alert Plugin -->
 <script src="../assets/plugins/sweet-alert/sweetalert.min.js"></script>
 <script src="../assets/js/sweet-alert.js"></script>
 
 <!-- Popover js -->
 <script src="../assets/js/popover.js"></script>
+
 
 
 

@@ -53,7 +53,6 @@
             height: 250
         });
 
-
         {{--$(document).ready(function () {--}}
         {{--    $('#pages_form')[0].reset();--}}
         {{--    $('#form_output').html('');--}}
@@ -90,7 +89,6 @@
         {{--        }--}}
         {{--    })--}}
         {{--});--}}
-
 
     </script>
 

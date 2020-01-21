@@ -5,12 +5,14 @@
 
     <div class="row">
         <div class="col-md-12 col-lg-12">
+
             @if(session('successMsg'))
                 <div class="alert alert-success" role="alert">
                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
                     <i class="fa fa-check-circle-o mr-2" aria-hidden="true"></i> {{session('successMsg')}}
                 </div>
         @endif
+
             <div class="card">
                 <div class="card-header bg-primary text-white">
                     <div class="card-title">Article</div>
@@ -36,7 +38,6 @@
     </div>
 
 
-
     <!-- Modal -->
     <div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
          aria-hidden="true">
@@ -58,6 +59,7 @@
             </div>
         </div>
     </div>
+
 
 
 
@@ -90,13 +92,12 @@
                         searchable: false,
                         orderable: false,
                         render: function (data, type, row) {
+                                return data;
 
-                            return data;
                         }
                     }
                 ]
             });
-
 
             var user_id;
 
@@ -121,7 +122,7 @@
                 })
             });
 
-        });//.... end ready() .....//
+        });
 
     </script>
 

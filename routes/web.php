@@ -27,29 +27,34 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 //Article Route
 Route::get('/article', 'ArticleController@index')->name('article');
-Route::get('articles-list', [\App\Http\Controllers\ArticleController::class, 'getArticlesList'])->name('articles.list');
+Route::get('articles-list', 'ArticleController@getArticlesList')->name('articles.list');
 Route::get('article/add_article', 'ArticleController@add_article')->name('article.add_article');
 Route::get('article/{id}/edit', 'ArticleController@edit')->name('article.edit');
 Route::post('article/store', 'ArticleController@store')->name('article.store');
 Route::put('article/update/{id}', 'ArticleController@update')->name('article.update');
 Route::get('article/destroy/{id}', 'ArticleController@destroy')->name('article.delete');
 
+
 //pages list
 Route::get('Pages_list', 'Pages_listController@index')->name('Pages_list.index');
-Route::get('Pages_list/getdata', 'Pages_listController@getdata')->name('Pages_list.getdata');
+Route::get('Pages_list/{id}/edit', 'Pages_listController@edit')->name('Pages_list.edit');
+Route::put('Pages_list/update/{id}', 'Pages_listcontroller@update')->name('Pages.list.update');
+Route::get('Pages_list/destroy/{id}', 'pages_listController@destroy')->name('pages_list.delete');
+
+
 
 
 //Pages routes
 /*Route::get('/PagesMgt', 'PagesMgtController@index');*/
-Route::get('PagesMgt', 'PagesMgtController@index')->name('PagesMgt.index');
-Route::get('PagesMgt/getdata', 'PagesMgtController@getdata')->name('PagesMgt.getdata');
-Route::post('PagesMgt/postdata', 'PagesMgtController@postdata')->name('PagesMgt.postdata');
+Route::get('Pagesmgt', 'PagesmgtController@index')->name('Pagesmgt.index');
+Route::get('Pagesmgt/getdata', 'PagesmgtController@getdata')->name('Pagesmgt.getdata');
+Route::post('Pagesmgt/postdata', 'PagesmgtController@postdata')->name('Pagesmgt.postdata');
 
 
 //role routes
-Route::get('Role', 'RoleController@index')->name('Role.index');
-Route::get('Role/getdata', 'RoleController@getdata')->name('Role.getdata');
-Route::post('Role/postdata', 'RoleController@postdata')->name('Role.postdata');
+Route::resource('Role', 'RoleController');
+Route::post('Role/update', 'RoleController@update')->name('Role.update');
+Route::get('Role/destroy/{id}', 'RoleController@destroy');
 
 //slider route
 Route::get('slider', 'SliderController@index')->name('slider.index');

@@ -29,17 +29,10 @@
                                 <button type="button" class="btn btn-primary waves-effect waves-light btn-md">Edit
                                 </button>
                             </a>
-                            <a href="{{route('User.destroy',$user->id)}}">
-                                <button type="button" class="btn btn-danger waves-effect waves-light btn-md">delet
-                                </button>
-                            </a>
                         </td>
-
                     </tr>
+            </div>
             @endforeach
             </tbody>
-
         </table>
-
-
 @endsection
