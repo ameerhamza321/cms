@@ -10,10 +10,10 @@
             </div>
 
             <div class="card-body">
-                <form method="post" action="{{route('article.update')}}" id="pages_form"
+                <form method="post" action="{{route('article.update', $articles)}}" id="pages_form"
                       enctype="multipart/form-data">
                     @csrf
-                    @method('POST')
+                    @method('PUT')
                     <input type="hidden" name="id" id="id" value="{{ $articles->id }}">
                     <span id="form_output"></span>
 

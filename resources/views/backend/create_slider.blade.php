@@ -4,15 +4,15 @@
 
     <div class="row">
         <div class="col-md-12">
-            @if ($errors->any())
-                <div class="alert alert-danger">
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif
+{{--            @if ($errors->any())--}}
+{{--                <div class="alert alert-danger">--}}
+{{--                    <ul>--}}
+{{--                        @foreach ($errors->all() as $error)--}}
+{{--                            <li>{{ $error }}</li>--}}
+{{--                        @endforeach--}}
+{{--                    </ul>--}}
+{{--                </div>--}}
+{{--            @endif--}}
             <div class="card m-b-20">
                 <div class="card-header bg-primary text-white">
                     <h3 class="card-title">Add Slider</h3>
@@ -26,22 +26,37 @@
                             <div class="col-md-12">
                                 <div class="form-group label-floating">
                                     <label class="control-label">Title</label>
-                                    <input type="text" class="form-control" id="title" name="title"
+                                    <input type="text" class="form-control @error('title') is-invalid @enderror" id="title" name="title"
                                            placeholder="Enter Title">
+                                    @error('title')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
                                 </div>
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label class="form-label">Sub Title</label>
-                            <input type="text" class="form-control" name="sub_title" placeholder="Sub Title" id="slug"
+                            <input type="text" class="form-control @error('sub_title') is-invalid @enderror" name="sub_title" placeholder="Sub Title" id="slug"
                                    value="Sub Title " readonly>
+                            @error('sub_title')
+                            <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                            @enderror
                         </div>
 
                         <div class="form-group">
                             <div class="custom-file">
-                                <input type="file" class="custom-file-input" name="image">
-                                <label class="custom-file-label">Upload Images</label>
+                                <input type="file" class="custom-file-input @error('image') is-invalid @enderror" name="image">
+                                <label class="custom-file-label ">Upload Images</label>
+                                @error('image')
+                                <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
                         </div>
 

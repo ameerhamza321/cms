@@ -2,11 +2,11 @@
 
 @section('main_content')
 
-<div class="container">
+    <div class="container">
 
-    <br />
-    <table id="pages_table" class="table table-bordered" style="width:100%">
-        <thead class="bg-primary text-white">
+        <br/>
+        <table id="pages_table" class="table table-bordered" style="width:100%">
+            <thead class="bg-primary text-white">
 
             <tr>
                 <th class="text-white">Name</th>
@@ -14,27 +14,25 @@
                 <th class="text-white">Role</th>
                 <th class="text-white">Action</th>
             </tr>
-        </thead>
+            </thead>
 
-<tbody>
-<div class="container">
-@foreach ($users as $user)
+            <tbody>
+            <div class="container">
+                @foreach ($users as $user)
 
-<tr>
-   <td> {{ $user->name }}</td>
-    <td>{{ $user->email }}</td>
-    <td>{{implode(',', $user-> roles()->get()->pluck('name')->toArray()) }}</td>
-    <td>
-    <a href="{{route('User.edit',$user->id)}}"> <button type="button" class="btn btn-primary waves-effect waves-light btn-md">Edit</button></a>
-</td>
-
-</tr>
-</div>
-    @endforeach
-
-</tbody>
-
-</table>
-
-
+                    <tr>
+                        <td> {{ $user->name }}</td>
+                        <td>{{ $user->email }}</td>
+                        <td>{{implode(',', $user-> roles()->get()->pluck('name')->toArray()) }}</td>
+                        <td>
+                            <a href="{{route('User.edit',$user->id)}}">
+                                <button type="button" class="btn btn-primary waves-effect waves-light btn-md">Edit
+                                </button>
+                            </a>
+                        </td>
+                    </tr>
+            </div>
+            @endforeach
+            </tbody>
+        </table>
 @endsection

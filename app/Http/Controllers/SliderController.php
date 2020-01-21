@@ -99,6 +99,7 @@ class SliderController extends Controller
     public function update(Request $request, $id)
     {
 
+
         $this->validate($request,[
             'title' => 'required',
             'sub_title' => 'required',

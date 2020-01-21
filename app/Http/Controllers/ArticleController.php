@@ -11,6 +11,11 @@ use Yajra\DataTables\Facades\DataTables;
 class ArticleController extends Controller
 {
 
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
         return view('backend.article');
@@ -23,27 +28,17 @@ class ArticleController extends Controller
                 return '      <a href="'.route('article.edit', $article->id).'"  class="btn btn-primary btn-sm"><i class="fa fa-pencil"></i> </a>
     
                               <a class="icon deleteRecord" href="#"></a>
-                              <a href="'.route('article.delete', $article->id).'" id="\'+row.id+\'" class="btn btn-danger btn-sm deleteRecord"><i class="fa fa-trash"></i> </a>';
+                              <a href="#" id="'.$article->id.'" class="btn btn-danger btn-sm deleteRecord"><i class="fa fa-trash"></i> </a>';
 
             })->addColumn('shortDescription', function($article) {
         return Str::limit(strip_tags($article->description));
         })->make(true);
     }
 
-    /**
-     * @param Request $request
-     * @return array
-     * Delete specific article.
-     */
-    public function deleteArticle(Request $request )
-    {
-        Article::destroy($request->id);
-        return ['status' => true, 'message' => 'Article deleted successfully'];
-
-    }
 
     public function store(Request $request)
     {
+        //dd($request->all());
 
         $rules = array(
             'title' => 'required',
@@ -70,35 +65,26 @@ class ArticleController extends Controller
             'user_id' => auth()->user()->id
         );
 
-
         Article::create($form_data);
-
-
-return redirect('article')->with('successMsg','Article Successfully Added');
+        return redirect('article')->with('successMsg','Article Successfully Added');
 
     }
 
     public function add_article()
     {
         return view('backend.add_article');
-
     }
 
 
     public function edit($id)
     {
-//        if(request()->ajax())
-//        {
-//            $data = Article::findOrFail($id);
-//            return response()->json(['data' => $data]);
-//        }
-
         $articles = Article::findorfail($id);
         return view('backend.update_article', compact('articles', $articles));
     }
 
-    public function update(Request $request)
+    public function update(Request $request, $id)
     {
+      // dd($request->all());
 
         $image_name = $request->hidden_image;
         $image = $request->file('image');
@@ -134,14 +120,17 @@ return redirect('article')->with('successMsg','Article Successfully Added');
             'user_id' => auth()->user()->id
         );
         Article::whereId($request->hidden_id)->update($form_data);
+
         return redirect('article');
+
+
     }
 
     public function destroy($id)
     {
         $data = Article::findOrFail($id);
         $data->delete();
-        return back();
+        return back()->with('successMsg','Article Successfully Deleted');
     }
 
 }

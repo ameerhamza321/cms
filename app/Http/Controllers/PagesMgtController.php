@@ -102,22 +102,6 @@ class PagesMgtController extends Controller
     }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     public function create()
     {
         //
