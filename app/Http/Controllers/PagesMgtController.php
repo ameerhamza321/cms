@@ -165,7 +165,7 @@ class PagesMgtController extends Controller
      */
     public function update(Request $request, Pages_mgt $pages_mgt)
     {
-        //
+
     }
 
     /**

@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 
-use App\Article;
 use App\Pages_mgt;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -33,6 +32,7 @@ class Pages_listcontroller extends Controller
     public function update(Request $request, $id)
     {
 
+
         $this->validate($request,[
             'title' => 'required',
             'slug' => 'required',
@@ -40,35 +40,39 @@ class Pages_listcontroller extends Controller
             'meta_title' => 'required',
             'meta_keywords' => 'required',
             'meta_description' => 'required',
-            'description' => 'required'
-
+            'description' => 'required',
         ]);
-        $title = $request->title;
-        $slug = $request->slug;
-        $heading = $request->heading;
-        $meta_title = $request->meta_title;
-        $meta_keywords = $request->meta_keywords;
-        $meta_description = $request->meta_description;
-        $description = $request->description;
+
+        $pages = $request->title;
+        $pages = $request->slug;
+        $pages = $request->heading;
+        $pages = $request->meta_title;
+        $pages = $request->meta_keywords;
+        $pages = $request->meta_description;
+        $pages = $request->description;
         $pages = Pages_mgt::find($id);
 
 
         $pages->title = $request->title;
-        $pages->slug = $request->slug;
-        $pages->heading = $request->heading;
-        $pages->meta_title = $request->meta_title;
-        $pages->meta_keywords = $request->meta_keywords;
-        $pages->meta_descripton = $request->meta_description;
-        $pages->descripton = $request->description;
+        $pages->title = $request->slug;
+        $pages->title = $request->heading;
+        $pages->title = $request->meta_title;
+        $pages->title = $request->meta_keywords;
+        $pages->title = $request->meta_description;
+        $pages->title = $request->description;
+
+
         $pages->save();
         return redirect()->route('Pages_list.index')->with('successMsg','Page Successfully Updated');
 
     }
-    public function destroy(Request $request )
-    {
 
-        Pages_mgt::destroy($request->id);
-        return back();
+
+    public function destroy($id )
+    {
+        $data = Pages_mgt::findOrFail($id);
+        $data->delete();
+        return redirect('Pages_list');
 
     }
 

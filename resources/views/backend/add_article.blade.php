@@ -10,7 +10,7 @@
             </div>
 
             <div class="card-body">
-                <form method="post" action="{{route('article.add_article')}}" id="pages_form"
+                <form method="post" action="{{route('article.store')}}" id="pages_form"
                       enctype="multipart/form-data">
                     @csrf
                     @method('POST')
@@ -51,44 +51,6 @@
     <script>
         $('#description').summernote({
             height: 250
-        });
-
-
-        $(document).ready(function () {
-            $('#pages_form')[0].reset();
-            $('#form_output').html('');
-            $('#button_action').val('insert');
-            $('#action').val('Save');
-        });
-
-        $('#pages_form').on('submit', function (event) {
-            event.preventDefault();
-            $.ajax({
-                url: "{{ route('article.store') }}",
-                method: "POST",
-                data: new FormData($("#pages_form")[0]),
-                dataType: 'JSON',
-                contentType: false,
-                cache: false,
-                processData: false,
-                success: function (data) {
-                    if (data.error.length > 0) {
-                        var error_html = '';
-                        for (var count = 0; count < data.error.length; count++) {
-                            error_html += '<div class="alert alert-danger">' + data.error[count] + '</div>';
-                        }
-                        $('#form_output').html(error_html);
-                    } else {
-                        $('#form_output').html(data.success);
-                        $('#pages_form')[0].reset();
-                        $('#action').val('Save');
-                        $('#button_action').val('insert');
-
-                        $('#articleDataTables').DataTable().ajax.reload(true);
-                    }
-
-                }
-            })
         });
 
 

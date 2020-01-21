@@ -21,7 +21,7 @@ class ArticleController extends Controller
         return DataTables::of(Article::query())
             ->addColumn('action', function ($article) {
                 return '      <a href="'.route('article.edit', $article->id).'"  class="btn btn-primary btn-sm"><i class="fa fa-pencil"></i> </a>
-      
+    
                               <a class="icon deleteRecord" href="#"></a>
                               <a href="'.route('article.delete', $article->id).'" id="\'+row.id+\'" class="btn btn-danger btn-sm deleteRecord"><i class="fa fa-trash"></i> </a>';
 
@@ -74,8 +74,7 @@ class ArticleController extends Controller
         Article::create($form_data);
 
 
-        return response()->json(['success' => 'Data Added successfully.']);
-
+return redirect('article')->with('successMsg','Article Successfully Added');
 
     }
 
